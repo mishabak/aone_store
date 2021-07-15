@@ -1,0 +1,885 @@
+<div style="background: linear-gradient( 52deg,#ecdd3578, #fffef1,#d0c54978);" class="container-fluid">
+
+	<div style="font-size: 12px;padding: 12px;" class="logo container-fluid ">
+		<h1><a href="index.html"><b>T<br>H<br>E</b>&nbsp; A_ONE Store<span>The Best Supermarket</span></a> </h1>
+	</div>
+
+	{{!-- <div class="nav-top">
+		<nav class="navbar navbar-default">
+			<div class="navbar-header nav_2">
+				<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse"
+					data-target="#bs-megadropdown-tabs">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+
+
+			</div>
+			<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+				<ul class="nav navbar-nav ">
+					<li class=" active"><a href="/" class="hyper "><span>Home</span></a></li>
+
+
+					{{#if signUp}}
+
+					{{else}}
+					{{#if userslogin}}
+
+					{{else}}
+					{{#if viewcart}}
+
+					{{else}}
+
+					<li class="dropdown ">
+						<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>CATEGORY<b
+									class="caret"></b></span></a>
+						<ul class="dropdown-menu ">
+							<div class="row">
+								<div class="col-sm-12">
+									<ul class="  multi-column-dropdown">
+										{{#each category}}
+										<li style="margin-right: 5px; margin-left: 5px;"><a
+												href="/category/{{this.Category}}"><i class="fa fa-angle-right"
+													aria-hidden="true"></i>{{this.Category}}</a></li>
+										{{/each}}
+									</ul>
+								</div>
+							</div>
+						</ul>
+					</li>
+
+					{{/if}}
+					{{/if}}
+					{{/if}}
+
+
+
+
+
+
+
+				</ul>
+			</div>
+		</nav>
+		<div class="cart">
+			{{#if cartTrue}}
+			{{else}}
+
+			<a style="color: #317d33;" class="fa fa-shopping-cart " href="/view-cart"><span class="badge badge-light"
+					id="carst-count">{{cartCount}}</span></a>
+
+			{{/if}}
+
+
+		</div>
+		<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+			<ul style="background: #131921;" class="nav navbar-nav ">
+				<li style="float: right;" class="dropdown ">
+					{{#if userName}}
+					<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span>{{userName.Name}}<b
+								class="caret"></b></span></a>
+					{{else}}
+					<a href="#" class="dropdown-toggle  hyper" data-toggle="dropdown"><span><i style="color: #fab005"
+								class="fa fa-sign-in" aria-hidden="true"></i> /
+							<i style="color: #fab005" class="fas fa-user-plus"></i><b class="caret"></b></span></a>
+
+					{{/if}}
+					{{#if userName}}
+					<ul class="dropdown-menu ">
+						<div class="row">
+							<div class="col-sm-12">
+								<ul class="  multi-column-dropdown">
+									<a href="/user-profile">
+										<li style="margin-right: 7px; margin-left: 7px;">Profile</li>
+									</a>
+
+									<a href="/view-order">
+										<li style="margin-right: 7px; margin-left: 7px;">My order</li>
+									</a>
+									<a href="/user-settings">
+										<li style="margin-right: 7px; margin-left: 5px;">Settings</li>
+									</a>
+
+									<a href="/log-out">
+										<li style="margin-right:7px; margin-left: 7px;">Logout</li>
+									</a>
+
+
+								</ul>
+							</div>
+						</div>
+					</ul>
+					{{else}}
+					<ul class="dropdown-menu ">
+						<div class="row">
+							<div class="col-sm-12">
+								<ul class="  multi-column-dropdown">
+									<a href="/login">
+										<li style="margin-right: 7px; margin-left: 7px;">Login</li>
+									</a>
+									<a href="/sign-up">
+										<li style="margin-right: 7px; margin-left: 7px;">sign_up</li>
+									</a>
+								</ul>
+							</div>
+						</div>
+					</ul>
+					{{/if}}
+				</li>
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+
+	</div> --}}
+
+</div>
+
+
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing: border-box;
+	}
+
+
+	.ul5 {
+		list-style: none;
+	}
+
+	.a5 {
+		text-decoration: none;
+	}
+
+	.header5 {
+		position: sticky;
+		top: 0px;
+		background-color: #131921;
+		width: 100%;
+		z-index: 1000;
+		border-radius: 4px;
+		box-shadow: 0px 0px 3px 1px #424242;
+	}
+
+	.section5 {
+		position: relative;
+		width: 100%;
+		/*	background: url('bg.jpg') no-repeat top center / cover; */
+		overflow: hidden;
+	}
+
+	.overlay5 {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-color: rgb(56, 165, 238, 0.5);
+	}
+
+	.container5 {
+
+		padding: 7px 2rem;
+		margin: 0 auto;
+		display: flex;
+		position: relative;
+	}
+
+	.logo-container5 {
+		flex: 0.5;
+		display: flex;
+		align-items: center;
+
+	}
+
+	.nav-btn5 {
+		flex: 3;
+		display: flex;
+	}
+
+	.nav-links5 {
+		flex: 2;
+	}
+
+	.log-sign5 {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 1;
+	}
+
+	.logo5 {
+		color: #fff;
+		font-size: 1.1rem;
+		font-weight: 600;
+		letter-spacing: 2px;
+		text-transform: uppercase;
+		line-height: 3rem;
+	}
+
+	.logo5 span {
+		font-weight: 300;
+	}
+
+	.btn5 {
+		display: inline-block;
+		padding: .5rem 1.3rem;
+		font-size: .8rem;
+		/* border: 2px solid #fff;
+		border-radius: 2rem; */
+		line-height: 1;
+		margin: 0 .2rem;
+		transition: .3s;
+		text-transform: uppercase;
+	}
+
+	.btn5.solid5,
+		{
+			{
+			 !-- .btn5.transparent5:hover {
+				background-color: #fff;
+				color: #69bde7;
+			}
+
+			--
+		}
+	}
+
+	.btn5.transparent5,
+	.btn5.solid5:hover {
+		background-color: transparent;
+		color: #fff;
+	}
+
+	.nav-links5>ul {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+
+	.nav-link5 {
+		position: relative;
+		list-style-type: none;
+	}
+
+	.nav-link5>a {
+		line-height: 3rem;
+		color: #fff;
+		padding: 0 .8rem;
+		letter-spacing: 1px;
+		font-size: .95rem;
+		display: flex;
+		align-items: center;
+		/*	justify-content: space-between; */
+		transition: .5s;
+	}
+
+	.nav-link5>a>i {
+		margin-left: .2rem;
+	}
+
+	.nav-link5:hover>a {
+		transform: scale(1.1);
+	}
+
+	.dropdown5 {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 10rem;
+		transform: translateY(10px);
+		opacity: 0;
+		pointer-events: none;
+		transition: .5s;
+	}
+
+	.dropdown5 ul {
+		position: relative;
+	}
+
+	.dropdown-link5>a {
+		display: flex;
+		background-color: #fff;
+		color: #3498db;
+		padding: .5rem 1rem;
+		font-size: .9rem;
+		align-items: center;
+		justify-content: space-between;
+		transition: .3s;
+	}
+
+	.dropdown-link5:hover>a {
+		background-color: #3498db;
+		color: #fff;
+	}
+
+	.dropdown-link5:not(:nth-last-child(2)) {
+		border-bottom: 1px solid #efefef;
+	}
+
+	.dropdown-link5 i {
+		transform: rotate(-90deg);
+	}
+
+	.arrow5 {
+		position: absolute;
+		width: 11px;
+		height: 11px;
+		top: -5.5px;
+		left: 32px;
+		background-color: #fff;
+		transform: rotate(45deg);
+		cursor: pointer;
+		transition: .3s;
+		z-index: -1;
+	}
+
+	.dropdown-link5:first-child:hover~.arrow5 {
+		background-color: #3498db;
+	}
+
+	.dropdown-link5 {
+		position: relative;
+	}
+
+	.dropdown5.second5 {
+		top: 0;
+		left: 100%;
+		padding-left: .8rem;
+		cursor: pointer;
+		transform: translateX(10px);
+	}
+
+	.dropdown5.second5 .arrow5 {
+		top: 10px;
+		left: -5.5px;
+	}
+
+	.nav-link5:hover>.dropdown5,
+	.dropdown-link5:hover>.dropdown5 {
+		transform: translate(0, 0);
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.hamburger-menu-container5 {
+		flex: 1;
+		display: none;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	.hamburger-menu5 {
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: flex-end;
+	}
+
+	.hamburger-menu5 div {
+		width: 1.6rem;
+		height: 3px;
+		border-radius: 3px;
+		background-color: #fff;
+		position: relative;
+		z-index: 1001;
+		transition: .5s;
+	}
+
+	.hamburger-menu5 div:before,
+	.hamburger-menu5 div:after {
+		content: '';
+		position: absolute;
+		width: inherit;
+		height: inherit;
+		background-color: #fff;
+		border-radius: 3px;
+		transition: .5s;
+	}
+
+	.hamburger-menu5 div:before {
+		transform: translateY(-7px);
+	}
+
+	.hamburger-menu5 div:after {
+		transform: translateY(7px);
+	}
+
+	#check5 {
+		position: absolute;
+		top: 50%;
+		right: 1.5rem;
+		transform: translateY(-50%);
+		width: 2.5rem;
+		height: 2.5rem;
+		z-index: 90000;
+		cursor: pointer;
+		opacity: 0;
+		display: none;
+	}
+
+	#check5:checked~.hamburger-menu-container5 .hamburger-menu5 div {
+		background-color: transparent;
+	}
+
+	#check5:checked~.hamburger-menu-container5 .hamburger-menu5 div:before {
+		transform: translateY(0) rotate(-45deg);
+	}
+
+	#check5:checked~.hamburger-menu-container5 .hamburger-menu5 div:after {
+		transform: translateY(0) rotate(45deg);
+	}
+
+	@keyframes animation {
+		from {
+			opacity: 0;
+			transform: translateY(15px);
+		}
+
+		to {
+			opacity: 1;
+			transform: translateY(0px);
+		}
+	}
+
+	@media (max-width: 920px) {
+		.hamburger-menu-container5 {
+			display: flex;
+		}
+
+		#check5 {
+			display: block;
+		}
+
+		.nav-btn5 {
+			position: fixed;
+			top: 3rem;
+			left: 0;
+			width: 100%;
+			background-color: #131921c2;
+			flex-direction: column;
+			align-items: center;
+			justify-content: space-between;
+			overflow-x: hidden;
+			overflow-y: auto;
+			transform: translateX(100%);
+			transition: .65s;
+		}
+
+		#check5:checked~.nav-btn5 {
+			transform: translateX(0);
+		}
+
+		#check5:checked~.nav-btn5 .nav-link5,
+		#check5:checked~.nav-btn5 .log-sign5 {
+			animation: animation .5s ease forwards var(--i);
+		}
+
+		.nav-links5 {
+			flex: initial;
+			width: 100%;
+		}
+
+		.nav-links5>ul {
+			flex-direction: column;
+		}
+
+		.nav-link5 {
+			width: 100%;
+			opacity: 0;
+			transform: translateY(15px);
+		}
+
+		.nav-link5>a {
+			line-height: 1;
+			padding: 1.6rem 2rem;
+		}
+
+		.nav-link5:hover>a {
+			transform: scale(1);
+			background-color: #50a9d6;
+		}
+
+		.dropdown5,
+		.dropdown5.second5 {
+			position: initial;
+			top: initial;
+			left: initial;
+			transform: initial;
+			opacity: 1;
+			pointer-events: auto;
+			width: 100%;
+			padding: 0;
+			background-color: #13192100;
+			display: none;
+		}
+
+		.nav-link5:hover>.dropdown5,
+		.dropdown-link5:hover>.dropdown5 {
+			display: block;
+		}
+
+		.nav-link5:hover>a>i,
+		.dropdown-link5:hover>a>i {
+			transform: rotate(360deg);
+		}
+
+		.dropdown-link5>a {
+			background-color: transparent;
+			color: #fff;
+			padding: 1.2rem 2rem;
+			line-height: 1;
+		}
+
+		.dropdown5.second5 .dropdown-link5>a {
+			padding: 1.2rem 2rem 1.2rem 3rem;
+		}
+
+		.dropdown5.second5 .dropdown5.second5 .dropdown-link5>a {
+			padding: 1.2rem 2rem 1.2rem 4rem;
+		}
+
+		.dropdown-link5:not(:nth-last-child(2)) {
+			border-bottom: none;
+		}
+
+		.arrow5 {
+			z-index: 1;
+			background-color: #69bde7;
+			left: 10%;
+			transform: scale(1.1) rotate(45deg);
+			transition: .5s;
+		}
+
+		.nav-link5:hover .arrow5 {
+			background-color: #50a9d6;
+		}
+
+		.dropdown5 .dropdown5 .arrow5 {
+			display: none;
+		}
+
+		.dropdown-link5:hover>a {
+			background-color: #3a91bd;
+		}
+
+		.dropdown-link5:first-child:hover~.arrow5 {
+			background-color: #50a9d6;
+		}
+
+		.nav-link5>a>i {
+			font-size: 1.1rem;
+			transform: rotate(-90deg);
+			transition: .7s;
+		}
+
+		.dropdown5 i {
+			font-size: 1rem;
+			transition: .7s;
+		}
+
+		.log-sign5 {
+			flex: initial;
+			width: 100%;
+			/*	padding: 1.5rem 1.9rem; */
+			justify-content: flex-start;
+			opacity: 0;
+			transform: translateY(15px);
+		}
+	}
+
+	.search5 {
+		width: 365px;
+	}
+
+	@media(max-width:400px) {
+		.search5 {
+			width: 270px;
+		}
+
+	}
+
+	@media(max-width:308px) {
+		.search5 {
+			width: 250px;
+		}
+
+	}
+</style>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{#if currentCategory}}
+<script>
+
+	$(document).ready(function () {
+		$("#search5").on("keyup", function (a) {
+			document.getElementById('11231-img').style.display = 'none'
+
+			var value = $(this).val().toLowerCase();
+			$(".pro-61*").filter(function () {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+			if (value == '') {
+				document.getElementById('11231-img').style.display = 'block'
+			}
+
+		});
+
+
+	});
+</script>
+{{else}}
+<script>
+
+	$(document).ready(function () {
+		$("#search5").on("keyup", function (a) {
+			document.getElementById('myCarousel').style.display = 'none'
+			document.getElementById('title').style.display = 'none'
+			document.getElementById('productPadding').style.padding = '0px'
+			document.getElementById('imager').style.display = 'none'
+			var value = $(this).val().toLowerCase();
+			$(".pro-1*").filter(function () {
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+			});
+			if (value == '') {
+				document.getElementById('myCarousel').style.display = 'block'
+				document.getElementById('title').style.display = 'block'
+				document.getElementById('titles').style.marginTop = '100px'
+				document.getElementById('imager').style.display = 'block'
+				document.getElementById('productPadding').classList('product')
+			}
+		});
+
+
+	});
+</script>
+{{/if}}
+
+
+<header class="header5">
+	<div id="moveTop5" class="container5">
+		<input type="checkbox" name="" id="check5">
+		<div class="logo-container5">
+			<h3 class="logo5">A_ONE<span> STORE</span></h3>
+		</div>
+		<div class="nav-btn5">
+			<div class="nav-links5">
+				<ul class="ul5">
+					<li class="nav-link5" style="--i: .6s">
+						<a class="a5 " href="/">Home</a>
+					</li>
+					<li class="nav-link5" style="--i: .85s">
+						<a class="a5">Category<i class="fas fa-caret-down"></i></a>
+						<div class="dropdown5">
+							<ul class="ul5">
+								{{#each category}}
+								<li class="dropdown-link5">
+									<a class="a5" href="/category/{{this.Category}}">{{this.Category}}</a>
+								</li>
+								{{/each}}
+
+								<div class="arrow5"></div>
+							</ul>
+						</div>
+					</li>
+
+					<li>
+						<div class="search5"
+							style=" display: flex; align-items: baseline; padding-left: 5px; border-radius: 5px;   background: white;">
+							<input id="search5" class="form-control" type="search"
+								style="width: 92%; border: none; height: 25px; " placeholder="search">
+							{{#if currentCategory}}
+							<a style="margin-right: 6px;" href="/category/{{currentCategory}}"><i
+									style="color: #535354;" class="fa fa-refresh"></i></a>
+							{{else}}
+							<a style="margin-right: 6px;" href="/"><i style="color: #535354;"
+									class="fa fa-refresh"></i></a>
+							{{/if}}
+						</div>
+						{{!--
+						<script>
+							$(document).ready(() => {
+
+								$('#search5').click(() => {
+									$('#search5').removeAttr('value')
+
+								})
+							})
+						</script> --}}
+
+					</li>
+
+
+
+				</ul>
+			</div>
+			<div class="log-sign5" style="--i: 1.8s">
+				{{#if userName }}
+
+				{{#if Profile}}
+				<img style="width: 25px; height: 25px; border-radius: 100%;" src="/user-profiles/{{userName._id}}.jpg"
+					alt="">
+				{{else}}
+				<img style="width: 25px; height: 25px; border-radius: 100%;" src="\images\defaultProfile.png" alt="">
+				{{/if}}
+
+				<ul class="usl5">
+					<li class="nav-link5" style="--i: .85s ">
+						<a class="a5">{{userName.Name}}<i class="fas fa-caret-down"></i></a>
+						<div class="dropdown5">
+							<ul class="ul5">
+								<li class="dropdown-link5"><a href="/user-profile">Profile</a></li>
+								<li class="dropdown-link5"><a href="/view-order">My order</a></li>
+								<li class="dropdown-link5"><a onclick="changePasswords()">Change Password</a></li>
+								<li class="dropdown-link5"><a href="/log-out">Logout</a></li>
+								<div class="arrow5"></div>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				{{else}}
+				<a href="/login" class=" a5  btn5 transparent5">Log in</a>
+				<a href="/sign-up" style="color: white;" class=" a5  btn5 solid5">Sign up</a>
+				{{/if}}
+				{{!-- <a href="#" class=" a5  btn5 transparent5">Log in</a>
+				<a href="#" class=" a5  btn5 solid5">Sign up</a> --}}
+				{{#if cartTrue}}
+				{{else}}
+				<a style="color: #34daac;" class="fa fa-shopping-cart " href="/view-cart"><span
+						class="badge badge-light" id="cart-count">{{cartCount}}</span></a>
+
+				{{/if}}
+			</div>
+		</div>
+		<div class="hamburger-menu-container5">
+			<div class="hamburger-menu5">
+				<div></div>
+			</div>
+		</div>
+	</div>
+</header>
+<main>
+	<section class="section5">
+		<div class="overlay5"></div>
+	</section>
+</main>
+
+
+
+
+
+
+<div id="changePassword"
+	style="width: 100%; height: 100%;  
+	background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center;display: none; ">
+	<div
+		style="margin: auto; background: white;  width:400px;   border-radius: 5px;  box-shadow: 0px 0px 2px 1px white;  margin-top:200px;  ">
+		<span style="margin-right:10px; margin-top: 5px;" id="span" class="close">&times;</span>
+		<div class="row">
+			<div class="col-12">
+				<form id="change-password">
+					<div
+						style="height: 200px; padding: 15px; flex-direction: column; display: flex; justify-content: center; align-items: center; ">
+						<input name="Password" id="current-password" type="tel" class="form-control"
+							placeholder="Current Password">
+						<label id="errorMsg" style="display: none;" for="">Invalid Password</label>
+						<button type="submit" style="height: 45px; margin-left: 25px;" class="btn">Confirm</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="newPassword"
+	style="width: 100%; height: 100%;  
+	background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center;display: none; ">
+	<div
+		style="margin: auto; background: white;  width:400px;   border-radius: 5px;  box-shadow: 0px 0px 2px 1px white;  margin-top:200px;  ">
+		<span style="margin-right:10px; margin-top: 5px;" id="span1" class="close">&times;</span>
+		<div class="row">
+			<div class="col-12">
+				<form id="new-password">
+					<div
+						style="height: 200px; padding: 15px; flex-direction: column; display: flex; justify-content: center; align-items: center; ">
+						<input name="Password" id="confirm-password" type="password" class="form-control"
+							placeholder="New Password">
+						<button type="submit" style="height: 45px; margin-left: 25px;" class="btn">save</button>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function changePasswords() {
+		document.getElementById('changePassword').style.display = 'block'
+	}
+	var span = document.getElementById('span')
+	var span1 = document.getElementById('span1')
+	var NewPasswords = document.getElementById('newPassword')
+	var changePassword = document.getElementById('changePassword')
+	window.onclick = (event) => {
+		if (event.target == span) {
+			document.getElementById('changePassword').style.display = 'none'
+		} else if (event.target == changePassword) {
+			document.getElementById('changePassword').style.display = 'none'
+		} else if (event.target == span1) {
+			document.getElementById('newPassword').style.display = 'none'
+		} else if (event.target == NewPasswords) {
+			document.getElementById('newPassword').style.display = 'none'
+		}
+	}
+
+	function NewPassword() {
+		document.getElementById('newPassword').style.display = 'block'
+	}
+	function checkPassword() {
+		var value = document.getElementById('current-password').value
+		$.ajax({
+			url: '/check-password',
+			method: 'post',
+			data: { value },
+			success: (response) => {
+				if (response) {
+					document.getElementById('errorMsg').style.display = 'none'
+								document.getElementById('changePassword').style.display = 'none'
+					NewPassword()
+				} else {
+					document.getElementById('errorMsg').style.display = 'block'
+				}
+			}
+		})
+	}
+function saveNewPassword(){
+var newPassword = document.getElementById('confirm-password').value
+var confirms = confirm('Are you sure')
+if(confirms){
+$.ajax({
+	url:'/save-new-password',
+	method:'post',
+	data:{newPassword},
+    success:(response)=>{
+		if(response){
+			document.getElementById('newPassword').style.display = 'none'
+		}
+	}
+})
+}
+
+}
+
+
+
+
+
+</script>

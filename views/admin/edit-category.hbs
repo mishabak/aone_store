@@ -1,0 +1,43 @@
+
+<div style="margin-top: 94px;">
+<div style="margin-left: 38px;" class="btn btn-success "><a class="text-white"
+        href="/admin/view-category">All Category</a></div>
+
+<form style="margin-top: 22px;" class="container" action="/admin/edit-category" method="POST"
+    enctype="multipart/form-data">
+
+    <div style="padding-top: 53px;padding-bottom: 39px; border-radius: 11px;" class="container bg-light">
+        <div class="row">
+            <div class="col-12 col-lg-6">
+                <input style="display: none;" name="Id" type="text" value="{{response._id}}">
+
+                <div class="row">
+
+
+                    <div class="col-4">
+
+                        <img style="width: 200px ;height: 200px;
+    margin-top: 24px;" src="/categoryImage/{{response._id}}.jpg" alt="IMG...." id="view" >
+                    </div>
+
+
+                    <div class="col-8">
+                        <div><input class="form-control" name="Category" type="text" value="{{response.Category}}"> <br>
+                        </div>
+                        <div><input class="form-control" name="Image" type="file" onchange="img(event)"> <br></div>
+                    </div>
+                </div>
+
+                <button style="background: #525252;" class="btn " type="submit">Save Changes</button>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+</div>
+<script>
+    function img(event) {
+        document.getElementById('view').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

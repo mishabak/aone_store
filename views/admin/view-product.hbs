@@ -1,0 +1,39 @@
+<div class="container table-responsive" style="margin-top: 94px;">
+
+
+  <table id="datatablesSimple" class="table">
+    <thead>
+      <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">QUANTITY</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">CATEGORY</th>
+        <th scope="col">BRAND</th>
+        <th scope="col">OFFER</th>
+        <th scope="col">IMAGE</th>
+        <th scope="col">OPTIONS</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {{#each Product}}
+      <tr>
+        <td>{{this.Name}}</td>
+        <td>{{this.Quantity}}</td>
+        <td>{{this.Price}}</td>
+        <td>{{this.Category}}</td>
+        <td>{{this.Brand}}</td>
+        <td>{{this.Offer}}</td>
+
+        <td><img width="60px" src="/productImage/{{this._id}}1.jpg" alt="IMG...."></td>
+        <td><a href="/admin/edit-product/{{this._id}}"><i class="fas fa-edit"></i></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <a href="/admin/delete-product/{{this._id}}"
+            onclick="return confirm('delete product')"><i class="fas fa-trash"></i>
+          </a></td>
+      </tr>
+      {{/each}}
+    </tbody>
+
+  </table>
+
+</div>

@@ -1,0 +1,129 @@
+<script src="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css
+"></script>
+<script src="https://cdn.datatables.net/buttons/1.7.1/css/buttons.dataTables.min.css
+"></script>
+<div style="margin-top: 100px; margin-left: 30px;">
+
+    <button onclick="callback()" class="btn ">back</button>
+ 
+    <table id="example" class="display nowrap" style="width:100% ">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Total Amount</th>     
+            </tr>
+        </thead>
+        <tbody>
+            {{#each orders}}
+            <tr>
+                <td>{{formatDate this.Date 'DD MM YYYY'}}</td>
+                <td>{{deliveryDetails.Name}}
+                    {{!-- <b>
+                        <p style="margin-bottom: 0px; ">Name: &nbsp; &nbsp; {{deliveryDetails.Name}}</p>
+                    </b>
+                    <p style="margin-bottom: 0px; ">Mobile:&nbsp;&nbsp;&nbsp; {{deliveryDetails.Mobile}}</p>
+                    <p style="margin-bottom: 0px; ">Address:&nbsp; {{deliveryDetails.Address}}</p>
+                    <p style="margin-bottom: 0px; ">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{deliveryDetails.Email}}
+                    </p>
+                    <p style="margin-bottom: 0px; ">City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{deliveryDetails.City}}</p>
+                    <p style="margin-bottom: 0px; ">State:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        {{deliveryDetails.State}}</p>
+                    <p style="margin-bottom: 0px; ">Pincode:&nbsp;&nbsp; {{deliveryDetails.Pincode}}</p> --}}
+                </td>
+                <td>{{deliveryDetails.Address}}</td>
+                <td>{{this.PaymentMethod}}</td>
+                <td>{{this.Status}}</td>
+                <td>Rs: {{this.TotalAmount}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Date</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+                <th>Total Amount</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+    $(document).ready(function () {
+        $('#example1').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+
+    // set date for filter 
+
+    function toClick() {
+        var to = document.getElementById('toDate')
+        var from = document.getElementById('fromDate').value
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+        today = yyyy + '-' + mm + '-' + dd;
+        to.setAttribute("max", today);
+        to.setAttribute("min", from)
+    }
+
+    function fromClick() {
+        var to = document.getElementById('toDate').value
+        var from = document.getElementById('fromDate')
+        from.setAttribute("max", to);
+    }
+
+    function callback(){
+        location.href='/admin/view-report'
+    }
+
+
+   
+
+  
+
+</script>
+<script src="    https://code.jquery.com/jquery-3.5.1.js
+"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js
+"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js
+"></script>
+
+<script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>

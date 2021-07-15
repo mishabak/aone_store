@@ -1,0 +1,65 @@
+
+            <div style="margin-top: 150px; background: #b9b4b0;">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-5">
+                            <div class=" admin-card  card shadow-lg border-0 rounded-lg mt-5">
+                                <div class=" admin-head card-header">
+                                    <h3 class="text-center font-weight-light my-4">Login</h3>
+                                </div>
+                                <div class="card-body">
+                                    <form action="/admin" method="POST">
+                                        <div class="form-floating mb-3">
+                                            <input name="Email" style="background: #cecece;" class="form-control"
+                                                id="inputEmail" type="email" placeholder="name@example.com" />
+                                            <label for="inputEmail">Email address</label>
+                                        </div>
+                                        <div class="form-floating mb-3">
+                                            <input name="Password" style="background: #cecece;" class="form-control"
+                                                id="inputPassword" type="password" placeholder="Password" />
+                                            <label for="inputPassword">Password</label>
+                                        </div>
+                                        {{#if value}}
+                                        <p style="color: red;">Invalid Email or Password</p>
+                                        {{/if}}
+                                       
+
+                                        <div style="float: right;" class="d-flex  justify-content-between mt-3 mb-0">
+                                            {{!-- <a class="small " style="color: #c6c6c6;" href="/admin">Forgot
+                                                Password?</a> --}}
+                                        
+
+                                            {{!-- <a class="btn btn-submit"
+                                                style="color: #cecece;background-color: #343434;border-color: #cecece;"
+                                                href="index.html">Login</a> --}}
+                                                <input type="submit"  class="btn" value="login" style="color: #cecece;background-color: #343434;border-color: #cecece;">
+                                        </div>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{#if login}}
+       <style>
+            body{
+                background: #b9b4b0;
+            }
+        </style>
+        {{/if}}
+
+
+
+        {{!-- <div id="layoutAuthentication_footer">
+            <footer style="    background: #151515;" class="py-4  mt-auto">
+                <div class="container-fluid px-4">
+                    <div class="d-flex text-center justify-content-between small">
+                        <div class="text-muted ">Copyright &copy; Your Website 2021</div>
+
+                    </div>
+                </div>
+            </footer>
+        </div> --}}
+   

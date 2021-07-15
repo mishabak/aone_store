@@ -1,0 +1,118 @@
+{{!-- <div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile form1">
+            <h3>Login</h3>
+            <form action="/verify-otp" method="post">
+                <input style="margin-bottom: 25px; height: 50px;" placeholder="OTP" type="number" name="Otp"
+                    class="form-control">
+
+                <input style="   margin-bottom: 25px; " type="submit" class="btn ">
+
+            </form>
+        </div>
+    </div>
+</div> --}}
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+<style>
+    .form{
+        width: 25px;
+    border-radius: 5px;
+    padding: 7px;
+    height: 25px;
+    }
+    .row{
+
+        display: flex;
+        justify-content: center;
+        margin-left: -40px;
+        
+    }
+   .col-xs-2{
+       width: 0px;
+
+    }
+</style>
+
+<div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile form1">
+            <h3>Login</h3>
+            <form action="/verify-otp" method="post" class="text-center">
+                <div class="form-group">
+                  
+                    <div class="passcode-wrapper">
+                        <div class="row">
+                            <div class="col-xs-2">
+                                <input id="codeBox1" class="form form-control" name="num1" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)">
+                            </div>
+                            <div class="col-xs-2">
+                                <input id="codeBox2" class="form form-control" name="num2" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)">
+                            </div>
+                            <div class="col-xs-2">
+                                <input id="codeBox3" class="form form-control" name="num3" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)">
+                            </div>
+                            <div class="col-xs-2">
+                                <input id="codeBox4" class="form form-control" name="num4" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)">
+                            </div>
+                            <div class="col-xs-2">
+                                <input id="codeBox5" class="form form-control" name="num5" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(5, event)" onfocus="onFocusEvent(5)">
+                            </div>
+                            <div class="col-xs-2">
+                                <input id="codeBox6" class="form form-control" name="num6" type="text" maxlength="1"
+                                    onkeyup="onKeyUpEvent(6, event)" onfocus="onFocusEvent(6)">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                 <input value="confirm" type="submit" id="confirm" style="display: none;" class="btn">
+               
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+
+    function getCodeBoxElement(index) {
+        return document.getElementById('codeBox' + index);
+    }
+    function onKeyUpEvent(index, event) {
+
+        const eventCode = event.which || event.keyCode;
+        if (getCodeBoxElement(index).value.length === 1) {
+            if (index !== 6) {
+                getCodeBoxElement(index + 1).focus();
+            } else {
+                getCodeBoxElement(index).blur();
+                // Submit code
+                console.log('submit code ');
+                $('#confirm').show()
+
+            }
+        }
+        if (eventCode === 8 && index !== 1) {
+            getCodeBoxElement(index - 1).focus();
+        }
+    }
+    function onFocusEvent(index) {
+        for (item = 1; item < index; item++) {
+            const currentElement = getCodeBoxElement(item);
+            if (!currentElement.value) {
+                currentElement.focus();
+                break;
+            }
+        }
+    }
+</script>

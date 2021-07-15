@@ -1,0 +1,89 @@
+
+<style >
+
+    body
+    {
+        background:#f2f2f2;
+    }
+
+    .payment
+	{
+		border:1px solid #f2f2f2;
+		height:280px;
+        border-radius:20px;
+        background:#fff;
+	}
+   .payment_header
+   {
+	   background:rgba(255,102,0,1);
+	   padding:20px;
+       border-radius:20px 20px 0px 0px;
+	   
+   }
+   
+   .check
+   {
+	   margin:0px auto;
+	   width:50px;
+	   height:50px;
+	   border-radius:100%;
+	   background:#fff;
+	   text-align:center;
+   }
+   
+   .check i
+   {
+	   vertical-align:middle;
+	   line-height:50px;
+	   font-size:30px;
+   }
+
+    .content 
+    {
+        text-align:center;
+    }
+
+    .content  h1
+    {
+        font-size:25px;
+        padding-top:25px;
+    }
+
+    .content a
+    {
+        width:200px;
+        height:35px;
+        color:#fff;
+        border-radius:30px;
+        padding:5px 10px;
+        background:rgba(255,102,0,1);
+        transition:all ease-in-out 0.3s;
+        
+    }
+
+    .content a:hover
+    {
+        text-decoration:none;
+        background:#000;
+    }
+  
+</style>
+
+
+
+<div class="container ">
+   <div class="row ">
+      <div style="margin: 15px;" class="col-md-12 d-flex justify-content-center mt-5">
+         <div class="payment  ">
+            <div class="payment_header">
+               <div class="check"><i class="fa fa-check" aria-hidden="true"></i></div>
+            </div>
+            <div style=" margin: 10px;"  class="content">
+               <h1>Order success</h1>
+              
+               <a  href="/view-order" ><button class="btn " style="color: black; margin: 2px;"> View Order</button></a>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

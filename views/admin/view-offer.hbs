@@ -1,0 +1,316 @@
+<div
+    style="margin-top: 100px;margin-left: 15px;margin-right: 15px; background: #d6cece73; padding: 17px;border-radius: 18px;">
+    {{!-- <h3 style="">OFFER BY CATEGORY</h3>
+    <div>
+        <div>
+            <div style="display:flex;justify-content: center; height: 125px;" class="container">
+                <div style=" border-radius: 11px; overflow-y: auto;   " class="container bg-light">
+                    <div class="row">
+                        {{#each category}}
+                        <div style=" border-radius: 6px; padding: 10px;" class="col-6 col-md-4 ">
+                            <div
+                                style="  background: #d6cece73; color: black; border-radius: 6px;  height: 100px; display: flex;  justify-content: center; align-items: center; flex-direction: column; ">
+                                <h3 style=" font-family: 'FontAwesome';">{{this.Category}} </h3>
+                                {{#if this.Offer}}
+                                <a style=" color: rgb(237, 237, 237); margin-left: auto; margin-right: 7px; font-size: 27px; margin-bottom: 7px; "
+                                    onclick="categoryModalEdit('{{this._id}}')"><i style="color: black;"
+                                        class="fas fa-edit"></i></a>
+                                {{else}}
+                                <a style=" color: rgb(237, 237, 237); margin-left: auto; margin-right: 7px; font-size: 27px; margin-bottom: 7px; "
+                                    onclick="categoryModal('{{this._id}}')"><i style="color: black;"
+                                        class="fa fa-plus-square"></i></a>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
+    <h3 style="margin-left: 10px; ">OFFER BY PRODUCT</h3>
+    <input id="search6" style=" margin-left: 10px; margin-bottom: 12px; width: 250px;" placeholder="Search"
+        type="search" class="form-control">
+    <script>
+        $(document).ready(function () {
+            $("#search6").on("keyup", function (a) {
+                var value = $(this).val().toLowerCase();
+                $(".pro-2*").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div>
+        <div>
+            <div style="display:flex;justify-content: center; height: 125px;" class="container">
+                <div style=" border-radius: 11px; overflow-y: auto;   " class="container bg-light">
+                    <div class="row">
+                        {{#each product}}
+                        <div style=" border-radius: 6px; padding: 10px;" class="col-6 col-md-4 pro-2">
+                            <div
+                                style=" background: #d6cece73; color: black; border-radius: 6px; height: 100px; display: flex; justify-content: center; align-items: center; flex-direction: column; ">
+                                <h3 style=" font-family: 'FontAwesome';">{{this.Name}} </h3>
+                                {{#if this.Offer}}
+                                <h4 style="display: none;">Offer</h4>
+                                <a style=" color:  rgb(237, 237, 237);  margin-left: auto;  margin-right: 7px;  font-size: 27px;  margin-bottom: 7px;  "
+                                    onclick="productModalEdit('{{this._id}}')"><i style="color: black;"
+                                        class="fas fa-edit"></i></a>
+                                {{else}}
+                                <a style=" color: rgb(237, 237, 237); margin-left: auto; margin-right: 7px; font-size: 27px; margin-bottom: 7px; "
+                                    onclick="productModal('{{this._id}}') "><i style="color: black;"
+                                        class="fa fa-plus-square"></i></a>
+                                {{/if}}
+                            </div>
+                        </div>
+                        {{/each}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div
+    style="margin-bottom: 80px; margin-left: 15px; margin-right: 15px; margin-top: 25px; height: 300px; background: #c9cad01c; border-radius: 18px; padding: 17px">
+    <h2>COUPON</h2>
+    <form id="coupon">
+        <div style="justify-content: center;" class="row">
+            <div class="col-md-4">
+                <label for="">Coupon code</label>
+                <input name="Coupon_code" class="form-control" type="text">
+
+            </div>
+            <div class="col-md-2">
+                <label for="">Percentage</label>
+                <input id="Coupon_percentage" name="Coupon_percentage" type="number" class="form-control"
+                    placeholder="50%">
+                <label id="coupon_error" style="display: none;" for="">Only possible to add (1-100)</label>
+            </div>
+            <div class="col-md-4">
+                <button class="btn" id="btn" type="">add</button>
+            </div>
+        </div>
+    </form>
+    <h3 style="margin-left: 10px; ">ALL COUPONS</h3>
+    <div>
+        <div>
+            <div style="display:flex;justify-content: center; height: 140px;" class="container">
+                <div style=" border-radius: 11px; overflow-y: auto;   " class="container bg-light">
+                    <div class="row">
+                        <div style=" border-radius: 6px; padding: 10px;" class="col-12  ">
+                            <table style="padding: 100px;" class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">COUPON CODE</th>
+                                        <th scope="col">OFFER%%</th>
+                                        <th scope="col">CONTROL</th>
+                                        <th scope="col">DELETE</th>
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each coupon}}
+                                    <tr id="{{this._id}}">
+                                        <td>{{this.Coupon_code}}</td>
+                                        <td>{{this.Coupon_percentage}}%</td>
+                                        {{#if this.Active}}
+                                        <td> <button onclick="inactiveCoupon('{{this._id}}')" style="background:rgb(214, 84, 55) ;" class="btn"
+                                                type="button">INACTIVE</button></td>
+
+
+                                        {{else}}
+                                        <td> <button onclick="activeCoupon('{{this._id}}')" style="background:rgb(214, 151, 55) ;" class="btn"
+                                                type="button">ACTIVE</button></td>
+
+                                        {{/if}}
+                                        <td><a onclick="deleteCoupon('{{this._id}}')"><i style="color: black;"
+                                                    class="fas fa-trash"></i>
+                                            </a></td>
+
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function addCoupon() {
+        var value = document.getElementById('Coupon_percentage').value
+        if (value < 1 || value > 100) {
+            document.getElementById('coupon_error').style.display = 'block'
+        } else {
+            document.getElementById('coupon_error').style.display = 'none'
+            $.ajax({
+                url: '/admin/add-coupon',
+                method: 'post',
+                data: $('#coupon').serialize(),
+                success: (response) => {
+                    location.reload()
+
+
+                }
+
+            })
+        }
+
+
+    }
+
+    function deleteCoupon(couponId) {
+        var deletes = confirm('Are you sure')
+        if (deletes) {
+            $.ajax({
+                url: '/admin/delete-coupon',
+                method: 'post',
+                data: { couponId },
+                success: (response) => {
+                    document.getElementById(couponId).style.display = 'none'
+                }
+            })
+        }
+    }
+
+    function inactiveCoupon(couponId) {
+        $.ajax({
+            url: '/admin/inactive-coupon',
+            method: 'post',
+            data: { couponId },
+            success: (response) => {
+                if (response) {
+                    location.reload()
+                }
+            }
+        })
+    }
+    function activeCoupon(couponId) {
+        $.ajax({
+            url: '/admin/active-coupon',
+            method: 'post',
+            data: { couponId },
+            success: (response) => {
+                if (response) {
+                    location.reload()
+                }
+            }
+        })
+    }
+
+</script>
+
+
+
+
+
+{{!--category modal --}}
+<div id="categoryModal"
+    style="width: 100%; height: 100%;  background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center;display: none; ">
+    <div
+        style="margin: auto; background: white;  width:400px;   border-radius: 5px;  box-shadow: 0px 0px 2px 1px white;  margin-top:200px;  ">
+        <span style="margin-right:10px; margin-top: 5px;" id="span" class="close">&times;</span>
+        <div class="row">
+            <div class="col-12">
+                <form id="category-offer">
+                    <div
+                        style="height: 200px; padding: 15px; flex-direction: row; display: flex; justify-content: center; align-items: center; ">
+                        <input name="Offer" style="width: 100px;" id="categoryOffer" type="number" class="form-control"
+                            placeholder="Offer %">
+                        <button id="add-btn " type="" style="height: 45px; margin-left: 25px;" class="btn">add</button>
+                        <input style="display: none;" name="categoryId" id="userId" type="text">
+                    </div>
+                    <label id="errorMsg" style="display: none;" for="">Only possible to add (1-100)</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- category modal edit --}}
+<div id="categoryModal-1"
+    style="width: 100%; height: 100%;  background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center; display: none; ">
+    <div
+        style="margin: auto; background: white; width:400px;   border-radius: 5px; box-shadow: 0px 0px 2px 1px white; margin-top:200px; ">
+        <span style="margin-right:10px; margin-top: 5px;" id="span-1" class="close">&times;</span>
+        <div class="row">
+            <div class="col-12">
+                <form id="category-offer-1">
+                    <div
+                        style="height: 200px; padding: 15px; flex-direction: row; display: flex; justify-content: center; align-items: center; ">
+                        <input name="Offer" style="width: 100px;" id="categoryOffer-1" type="number"
+                            class="form-control" placeholder="Offer %">
+                        <button onclick="categoryOfferDelete()" id="delete-btn-1" type="button"
+                            style="height: 45px; margin-left: 25px; display: none;" class="btn">Delete</button>
+
+                        <button id="edit-btn-1" type="" style="height: 45px; margin-left: 25px; display: none;"
+                            class="btn">Save</button>
+                        <input style="display: none;" name="categoryId" id="userId-1" type="text">
+                    </div>
+                    <label id="errorMsg-1" style="display: none;" for="">Only possible to add (1-100)</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{{!-- product modal --}}
+<div id="productModal"
+    style="width: 100%; height: 100%;  background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center;display: none; ">
+    <div
+        style="margin: auto; background: white;  width:400px;   border-radius: 5px;  box-shadow: 0px 0px 2px 1px white;  margin-top:200px;  ">
+        <span style="margin-right:10px; margin-top: 5px;" id="span-2" class="close">&times;</span>
+        <div class="row">
+            <div class="col-12">
+                <form id="product-offer">
+                    <div
+                        style="height: 200px; padding: 15px; flex-direction: row; display: flex; justify-content: center; align-items: center; ">
+                        <input name="Offer" style="width: 100px;" id="productOffer" type="number" class="form-control"
+                            placeholder="Offer %">
+                        <button id="add-btn-2 " type="" style="height: 45px; margin-left: 25px;"
+                            class="btn">add</button>
+                        <input style="display: none;" name="productId" id="userId-2" type="text">
+                    </div>
+                    <label id="errorMsg-2" style="display: none;" for="">Only possible to add (1-100)</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{!-- product modal edit --}}
+<div id="productModal-1"
+    style="width: 100%; height: 100%;  background-color: rgba(0, 0, 0, 0.411); top: 0; left:0; z-index: 999; position: fixed;  justify-content: center; align-items: center; display: none; ">
+    <div
+        style="margin: auto; background: white; width:400px;   border-radius: 5px; box-shadow: 0px 0px 2px 1px white; margin-top:200px; ">
+        <span style="margin-right:10px; margin-top: 5px;" id="span-3" class="close">&times;</span>
+        <div class="row">
+            <div class="col-12">
+                <form id="product-offer-1">
+                    <div
+                        style="height: 200px; padding: 15px; flex-direction: row; display: flex; justify-content: center; align-items: center; ">
+                        <input name="Offer" style="width: 100px;" id="productOffer-1" type="number" class="form-control"
+                            placeholder="Offer %">
+                        <button onclick="productOfferDelete()" id="delete-btn-2" type="button"
+                            style="height: 45px; margin-left: 25px; display: none;" class="btn">Delete</button>
+
+                        <button id="edit-btn-2" type="" style="height: 45px; margin-left: 25px; display: none;"
+                            class="btn">Save</button>
+                        <input style="display: none;" name="productId" id="userId-3" type="text">
+                    </div>
+                    <label id="errorMsg-3" style="display: none;" for="">Only possible to add (1-100)</label>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/addOffer.js"></script> {{!-- link for all modal --}}

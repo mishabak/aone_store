@@ -1,0 +1,186 @@
+<style>
+/*background: #fdfbe9;
+background: linear-gradient( 52deg,#fdfbe9, #fffef1,#fdfbe9);*/
+   #emptycontainer{
+	
+
+background: linear-gradient( 52deg,#f7f0a5, #fcfcf6,#f0ecbf);
+	display:flex;
+	flex-direction:column; 
+	align-items: center; 
+	justify-content: center;
+	padding: 80px;
+
+   }
+
+
+
+	@media(max-width:565px) {
+		#emptyImage {
+
+			width: 420px;
+
+		}
+	}
+	@media(max-width:465px) {
+		#emptyImage {
+
+			width: 357px;
+
+		}
+	}
+	@media(max-width:385px) {
+	#emptyText{
+			font-size: 27px;
+		}
+	}
+
+
+	@media(max-width:345px) {
+		#emptyImage {
+
+			width: 265px;
+
+		}
+	}
+	@media(max-width:255px) {
+		#emptyImage {
+
+			width: 205px;
+
+		}
+		#emptyText{
+			font-size: 24px;
+		}
+		#emptycontainer{
+			padding: 22px;
+		}
+	}
+	#price3{
+			display: none;
+		}
+	@media(max-width:380px){
+		#price1{
+			display: none;
+		}
+		#price2{
+			display: none;
+		}
+		#price3{
+			display: block;
+		}
+
+	}
+	
+</style>
+
+
+
+<section>
+	{{#if cartEmpty}}
+	<div id="emptycontainer" >
+
+		<h1 id="emptyText" style="font-family: cursive;">YOUR SHOPPING CART IS EMPTY </h1>
+		<img id="emptyImage" src="/images/empty_cart_ image.png" alt="">
+	</div>
+
+	{{else}}
+	<div  class="container">
+		<div style="width: 200px;float: right; margin-bottom: 20px; margin-right: 0px;" class="row ">
+			<h3 class="col-xs-12" style="margin-bottom: 5px; font-size: 20px; text-align: center;">TOTAL:RS. <span
+					id="total">{{totalValue}}</span></h3>
+			<a href="/checkout" class=" col-xs-12 btn btn-primary">Proceed to checkout</a>
+		</div>
+		<hr>
+		<div>
+		<table style="box-shadow: 0px 0px 5px 1px #131921;" class="table mt-5  ">
+			<thead>
+				<tr>
+					<th scope="col">Item</th>
+					<th scope="col">discription</th>
+					<th id="price1" scope="col">Price</th>
+					<th scope="col">Quantity</th>
+					<th scope="col">Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#each products}}
+				<tr>
+					<td><img width="70px" height="70px" src="/productImage/{{this.product._id}}1.jpg" alt=""></td>
+					<td>{{this.product.Name}} <p id="price3" >Rs: {{this.product.Price}}</p></td>
+					<td id="price2">Rs: {{this.product.Price}}</td>
+					<td><button onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../users._id}}','-1')"
+							style="margin-right: 3px;border: none; width: 10px;" class="cart-item-count mr-3 ">-</button>
+						<span id="{{this.product._id}}">{{this.quantity}}</span>
+						<button style="margin-left: 3px; border: none;width: 10px;" class="cart-item-count "
+							onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../users._id}}','1')">+</button>
+					</td>
+					<td>
+						<button class="fas fa-trash"
+							onclick="deleteProducts('{{this._id}}','{{this.product._id}}')"></button>
+					</td>
+				</tr>
+				{{/each}}
+			</tbody>
+		</table>
+		</div>
+
+
+	</div>
+	{{/if}}
+</section>
+{{!-- <script src="/js/bootstrap.js">  </script> --}}
+
+<script>
+	function changeQuantity(cartId, prodId, userId, count) {
+		let quantity = parseInt(document.getElementById(prodId).innerHTML)
+
+		$.ajax({
+			url: '/change-product-quantity',
+			data: {
+				user: userId,
+				cart: cartId,
+				product: prodId,
+				count: count,
+				quantity: quantity
+			},
+			method: 'POST',
+			success: (response) => {
+				if (response.removeProducts == true) {
+					location.reload()
+				} else {
+					
+					count = parseInt(count)
+					let result = (quantity + count)
+					document.getElementById(prodId).innerHTML = result
+					document.getElementById('total').innerHTML = response.totalValue
+				}
+			}
+		})
+	}
+</script>
+
+
+<script>
+	function deleteProducts(cartId, productsId) {
+	var deletes = 	confirm("Are you sure ")
+	if(deletes){
+		$.ajax({
+			url: 'cart-product-delete',
+			data: {
+				product: productsId,
+				cart: cartId
+			},
+			method: 'post',
+			success: (response) => {
+				if (response) {
+					
+					location.reload()
+				} else {
+					
+				}
+			}
+		})
+		}
+	}
+</script>

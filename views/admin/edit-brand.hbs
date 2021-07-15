@@ -1,0 +1,19 @@
+<div style="margin-top: 94px;">
+    <div style="margin-left: 38px;" class="btn btn-success "><a class="text-white" href="/admin/view-brand">All
+            Brand</a></div>
+    <form style="margin-top: 22px;" class="container" action="/admin/edit-brand" method="POST">
+        <div style="padding-top: 53px;padding-bottom: 39px; border-radius: 11px;" class="container bg-light">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <input style="display: none;" name="Id" type="text" value="{{response._id}}">
+                    <div class="row">
+                        <div class="col-8">
+                            <input class="form-control" name="Brand" type="text" value="{{response.Brand}}">
+                        </div>
+                    </div>
+                    <button style="background: #525252;" class="btn " type="submit">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

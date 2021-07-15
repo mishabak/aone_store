@@ -1,0 +1,292 @@
+{{!-- <div data-vide-bg="/video/video">
+	<div class="container">
+		<div class="banner-info">
+			<h3>It is a long established fact that a reader will be distracted by
+				the readable </h3>
+			<div class="search-form">
+				<form action="#" method="post">
+					<input type="text" placeholder="Search..." name="Search...">
+					<input type="submit" value=" ">
+				</form>
+			</div>
+		</div>
+	</div>
+</div> --}}
+
+<head>
+	<style>
+		img {
+			width: 100%;
+		}
+
+		div#form-box {
+			margin-top: -95px;
+
+			text-align: center;
+		}
+
+		div#input-group {
+			width: 80%;
+
+			margin: 0 auto 20px;
+
+			position: relative;
+
+			background-color: #fff;
+
+			border: none;
+			border-radius: 5px;
+		}
+
+
+		input#search,
+		a[for="search"] {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		input#search {
+			width: calc(100% - 40px);
+
+			padding: 10px;
+
+			border: none;
+		}
+
+		a[for="search"] {
+			width: 40px;
+
+			line-height: 40px;
+		}
+		.a123123{
+transform: rotate(-27deg);
+}
+	</style>
+	{{!--
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" /> --}}
+</head>
+
+<img id="imager"
+	style="background: linear-gradient( 52deg,#ecdd3578, #fffef1,#d0c54978);	box-shadow: 0px 0px 8px 3px #f1eec5;"
+	class="image-fluddid" src="/images\Grocery-PNG-Download-Image.png" />
+<div class="container"></div>
+
+
+
+<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.1.min.js"><\/script>')</script>
+<script src="/js/jquery.vide.min.js"></script>
+
+<!--content-->
+<div class="content-top ">
+	<div class="container ">
+		<div id="title" class="spec ">
+			<a href="/single-view">
+				<h3>Special Offers</h3>
+
+			</a>
+
+			<div class="ser-t">
+				<b></b>
+				<span><i></i></span>
+				<b class="line"></b>
+			</div>
+		</div>
+		<div class="tab-head ">
+
+			<div class=" tab-content tab-content-t ">
+				<div class="tab-pane active text-style" id="tab1">
+					<div class=" con-w3l">
+						{{#each responses}}
+
+						<div class="col-md-3 pro-1">
+							<div style="box-shadow: 0px 0px 14px 2px #d2d2d2;  border-radius: 10px; border: none;"
+								class="col-m">
+								<div style="position: relative;">
+									{{#if this.Offer}}
+									<img style="width: 73px; height: 73px; position: absolute;  z-index: 15;"
+										src="\images\edited-offer-removebg-preview.png" alt="">
+									<div style=" position: absolute; margin-top: 24px; margin-left: 4px; color: white; font-size: 14px;	 z-index: 16;"
+										class="a123123">{{this.Offer}}% off</div>
+									{{/if}}
+									<a href="/single-view/{{this._id}}" data-toggle="modal" class="offer-img">
+										<img height="100px" src="/productImage/{{this._id}}1.jpg" class="img-responsive"
+											alt="">
+									</a>
+									<div class="mid-1">
+										<div class="women">
+											<h6 style="text-align: center; text-transform: capitalize;">{{this.Name}}({{this.Quantity}})</h6>
+										</div>
+										<div class="mid-2">
+											{{#if this.Offer}}
+											<p><label></label><em class="item_price"><del>Rs:
+														{{this.Actual_Price}}</del></em></p>
+											<p><label></label><em class="item_price">Rs: {{this.Price}}</em></p>
+											{{else}}
+											<p><label></label><em class="item_price">Rs: {{this.Price}}</em></p>
+											{{/if}}
+											<div class="clearfix"></div>
+										</div>
+										<div class="add add-2">
+
+											<button onclick="addToCart('{{this._id}}')"
+												class="btn btn-danger my-cart-btn my-cart-b" data-id="1"
+												data-name="product 1" data-summary="summary 1" data-price="6.00"
+												data-quantity="1" data-image="images/of16.png">Add to Cart</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{{/each}}
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+</div>
+<script>
+
+</script>
+
+{{!--
+<!--content-->
+<div class="content-mid">
+	<div class="container">
+
+		<div class="col-md-4 m-w3ls">
+			<div class="col-md1 ">
+				<a href="kitchen.html">
+					<img src="images/co1.jpg" class="img-responsive img" alt="">
+					<div class="big-sa">
+						<h6>New Collections</h6>
+						<h3>Season<span>ing </span></h3>
+						<p>There are many variations of passages of Lorem Ipsum available, but the majority </p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-4 m-w3ls1">
+			<div class="col-md ">
+				<a href="hold.html">
+					<img src="images/co.jpg" class="img-responsive img" alt="">
+					<div class="big-sale">
+						<div class="big-sale1">
+							<h3>Big <span>Sale</span></h3>
+							<p>It is a long established fact that a reader </p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="col-md-4 m-w3ls">
+			<div class="col-md2 ">
+				<a href="kitchen.html">
+					<img src="images/co2.jpg" class="img-responsive img1" alt="">
+					<div class="big-sale2">
+						<h3>Cooking <span>Oil</span></h3>
+						<p>It is a long established fact that a reader </p>
+					</div>
+				</a>
+			</div>
+			<div class="col-md3 ">
+				<a href="hold.html">
+					<img src="images/co3.jpg" class="img-responsive img1" alt="">
+					<div class="big-sale3">
+						<h3>Vegeta<span>bles</span></h3>
+						<p>It is a long established fact that a reader </p>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>
+<!--content--> --}}
+<!-- Carousel
+    ================================================== -->
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	<!-- Indicators -->
+	<ol class="carousel-indicators">
+		<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		<li data-target="#myCarousel" data-slide-to="1"></li>
+		<li data-target="#myCarousel" data-slide-to="2"></li>
+	</ol>
+	<div class="carousel-inner" role="listbox">
+		<div class="item active">
+			<a href="kitchen.html"> <img class="first-slide" src="images/ba.jpg" alt="First slide"></a>
+
+		</div>
+		<div class="item">
+			<a href="care.html"> <img class="second-slide " src="images/ba1.jpg" alt="Second slide"></a>
+
+		</div>
+		<div class="item">
+			<a href="hold.html"><img class="third-slide " src="images/ba2.jpg" alt="Third slide"></a>
+
+		</div>
+	</div>
+
+</div><!-- /.carousel -->
+
+<!--content-->
+<div id="productPadding" class="product">
+	<div id="titles" class="container">
+		{{!-- <div id="titles" class="spec ">
+			<h3>Special Offers</h3>
+			<div class="ser-t">
+				<b></b>
+				<span><i></i></span>
+				<b class="line"></b>
+			</div>
+		</div> --}}
+		<div class=" con-w3l">
+			{{#each response}}
+
+			<div class="col-md-3 pro-1">
+				<div style="box-shadow: 0px 0px 14px 2px #d2d2d2;  border-radius: 10px; border: none;" class="col-m">
+					{{#if this.Offer}}
+					<img style="width: 73px; height: 73px; position: absolute;  z-index: 15;"
+						src="\images\edited-offer-removebg-preview.png" alt="">
+					<div style=" position: absolute; margin-top: 24px; margin-left: 4px; color: white; font-size: 14px;	 z-index: 16;"
+						class="a123123">{{this.Offer}}% off</div>
+					{{/if}}
+					<a href="/single-view/{{this._id}}" data-toggle="modal" class="offer-img">
+						<img height="100px" src="/productImage/{{this._id}}1.jpg" class="img-responsive" alt="">
+					</a>
+					<div class="mid-1">
+						<div class="women">
+							<h6>{{this.Name}}({{this.Quantity}})</h6>
+						</div>
+						<div class="mid-2">
+
+							<p><label></label><em class="item_price">Rs: {{this.Price}}</em></p>
+							{{!-- <div class="block">
+								<div class="starbox small ghosting"> </div>
+							</div> --}}
+							<div class="clearfix"></div>
+						</div>
+						<div class="add add-2">
+
+							<button onclick="addToCart('{{this._id}}')" class="btn btn-danger my-cart-btn my-cart-b"
+								data-id="1" data-name="product 1" data-summary="summary 1" data-price="6.00"
+								data-quantity="1" data-image="images/of16.png">Add to Cart</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			{{/each}}
+
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+
+
+
+<script src="js/bootstrap.js"></script>

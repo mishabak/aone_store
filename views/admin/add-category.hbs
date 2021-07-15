@@ -1,0 +1,26 @@
+<div style="margin-top: 94px;">
+    <div style="  margin-left: 38px;" class="  btn btn-success "><a class="text-white" href="/admin/view-category">All
+            Category</a>
+    </div>
+    <form class="container " action="/admin/add-category" method="POST" enctype="multipart/form-data">
+        <div style="padding-top: 53px;padding-bottom: 39px; border-radius: 11px; margin-top: 60px;  "
+            class="container bg-light">
+            <div class="row">
+                <div class="col-12 col-md-8 col-lg-6">
+                    <div><input class="form-control" name="Category" type="text" placeholder="CATEGORY"> <br></div>
+                    <div><input class="form-control" name="Image" type="file" placeholder="IMAGE"
+                            onchange="view(event)"> <br></div>
+                    <button style="background: #525252;" class="btn " type="submit">Add</button>
+                </div>
+                <div class=" col-12 col-md-4 col-lg-6">
+                    <img width="270px" id="addCategory">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script>
+    function view(event) {
+        document.getElementById('addCategory').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>

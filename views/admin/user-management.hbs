@@ -1,0 +1,29 @@
+<div class="container table-responsive" style="margin-top: 94px;">
+  <table id="datatablesSimple" class="table">
+    
+    <thead>
+      <tr>
+        <th scope="col">NAME</th>
+        <th scope="col">PHONE</th>
+        <th scope="col">EMAIL</th>
+        <th scope="col">OPTIONS</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each allUsers}}
+      <tr>
+        <td>{{this.Name}}</td>
+        <td>{{this.Phone}}</td>
+        <td>{{this.Email}}</td>
+        {{#if this.Block}}
+         <td><a href="/admin/unblock-user/{{this._id}}"><i class="fa fa-lock" onclick="return confirm('If you want to unblock {{this.Name}}')" ></i></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        {{else}}
+         <td><a href="/admin/block-user/{{this._id}}"><i class="fa fa-unlock" onclick="return confirm('If you want to block {{this.Name}}')" ></i></a>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        {{/if}}
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

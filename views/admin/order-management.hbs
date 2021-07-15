@@ -1,0 +1,106 @@
+<section style="margin-top: 100px;">
+  <table id="datatablesSimple" class="table">
+    <thead>
+      <tr>
+        <th scope="col">DATE</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">CUSTOMER</th>
+        <th scope="col">STATUS</th>
+        <th scope="col">PRICE</th>
+        <th scope="col">PRODUCT</th>
+        <th scope="col">cancel</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each allOrders}}
+      <tr>
+        <td>{{this.Date}}</td>
+        <td>{{deliveryDetails.Address}}</td>
+        <td>{{deliveryDetails.Name}}</td>
+        <td><input style="background:{{this.Background}}" type="button" id="{{this._id}}" class="btn "
+            onclick="orderStatus('{{this._id}}')" value="{{this.Status}}"></td>
+        <td>Rs: {{this.TotalAmount}}</td>
+        <td><a href="/admin/view-order-products/{{this._id}}"><button class="btn btn-primary">View Items</button></a>
+        </td>
+        
+        <td><button onclick="cancelOrders('{{this._id}}')" class="btn">CANCEL</button></td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</section>
+<script>
+
+  function cancelOrders(orderId) {
+    var deletes = confirm('Are you sure')
+    if (deletes) {
+      $.ajax({
+        url: '/admin/cancel-order',
+        method: 'post',
+        data: {
+          orderId,
+          backgroundColor: '#d24747'
+        },
+        success: (response) => {
+          location.reload()
+
+        }
+      })
+
+    }
+
+
+  }
+
+
+
+
+  function orderStatus(orderId) {
+    var status
+    var values = document.getElementById(orderId).value
+
+    if (values == 'placed') {
+      status = document.getElementById(orderId).value = 'processed'
+      document.getElementById(orderId).style.background = '#ff9800'
+      background = '#ff9800'
+    } else if (values == 'processed') {
+      status = document.getElementById(orderId).value = 'shipping'
+      document.getElementById(orderId).style.background = '#f1b344'
+      background = '#f1b344'
+    } else if (values == 'shipping') {
+      status = document.getElementById(orderId).value = 'delivery'
+      document.getElementById(orderId).style.background = '#a3e02c'
+      background = '#a3e02c'
+    } else if (values == 'delivery') {
+      status = document.getElementById(orderId).value = 'delivered'
+      document.getElementById(orderId).style.background = '#52ca3c'
+      background = '#52ca3c'
+    } else if (values == 'delivered') {
+      var finalStatus = true
+    } else if (values == 'cancelled') {
+      finalStatus = true
+    }
+
+    if (!finalStatus) {
+      $.ajax({
+        url: '/admin/change-status',
+        method: 'post',
+        data: {
+          status: status,
+          orderId: orderId,
+          backgroundColor: background
+        },
+        success: (response) => {
+          alert(response)
+        }
+      })
+    }
+  }
+
+</script>
+
+<style>
+  .blue {
+    background: navy;
+  }
+</style>

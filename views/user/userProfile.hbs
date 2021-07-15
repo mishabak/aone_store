@@ -1,0 +1,656 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Akronim&family=Nosifer&display=swap');
+
+    h4 span {
+        color: rgb(213, 156, 156);
+    }
+
+    h4 {
+        font-family: initial;
+        margin-bottom: 10px;
+    }
+
+    h4 .name1 {
+        margin-right: 40px;
+        font-family: monospace;
+    }
+
+    h4 .email1 {
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    h4 .address1 {
+        margin-right: 10px;
+        font-family: monospace;
+    }
+
+    h4 .phone1 {
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    h4 .city1 {
+        margin-right: 40px;
+        font-family: monospace;
+    }
+
+    h4 .pincode1 {
+        margin-right: 10px;
+        font-family: monospace;
+    }
+
+    h4 .state1 {
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    @media(max-width:318px) {
+        .email {
+            width: 260px;
+            word-wrap: break-word;
+        }
+    }
+</style>
+
+<style>
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        padding-top: 100px;
+        /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: rgb(0, 0, 0);
+        /* Fallback color */
+        background-color: rgba(0, 0, 0, 0.4);
+        /* Black w/ opacity */
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+    }
+
+    /* The Close Button */
+    .close {
+        color: #888484;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
+
+<style>
+    .profile {
+        color: rgb(183 83 83);
+    }
+
+    div .name1 {
+        font-size: 18px;
+        margin-right: 40px;
+        font-family: monospace;
+    }
+
+    div .email1 {
+        font-size: 18px;
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    div .address1 {
+        font-size: 18px;
+        margin-right: 10px;
+        font-family: monospace;
+    }
+
+    div .phone1 {
+        font-size: 18px;
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    div .city1 {
+        font-size: 18px;
+        margin-right: 40px;
+        font-family: monospace;
+    }
+
+    div .pincode1 {
+        font-size: 18px;
+        margin-right: 10px;
+        font-family: monospace;
+    }
+
+    div .state1 {
+        font-size: 18px;
+        margin-right: 30px;
+        font-family: monospace;
+    }
+
+    .input1 {
+        font-family: initial;
+        font-size: 18px;
+        color: black;
+        border: none;
+        background-color: #f7f7f7;
+        width: 70%;
+    }
+
+    @media(max-width:400px) {
+        .input1 {
+            width: 100%;
+
+        }
+    }
+
+    /* style for profile image -->>*/
+
+    .img-box {
+        width: 380px;
+        height: 380px;
+        display: none;
+
+    }
+
+    @media(max-width:800px) {
+        .img-box {
+            width: 200px;
+            height: 200px;
+        }
+    }
+
+    #paddingLeft {
+        margin-left: 125px;
+        margin-right: 125px;
+
+    }
+</style>
+
+
+
+<div style="margin-bottom: 25px;" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-4">
+            <div style="display: flex; justify-content: center; align-items: flex-end;">
+                {{#if Profile}}
+                <img onclick="popUpImageEdit()" id="profileImage" style=" margin-top: 20px; border-radius: 100%; "
+                    width="190px" height="190px" src="/user-profiles/{{userId}}.jpg" alt="img...">
+                {{else}}
+                <img onclick="popUpImageEdit()" id="profileImage" style=" margin-top: 20px; border-radius: 100%; "
+                    width="190px" height="190px" src="/images/defaultProfile.png" alt="img...">
+                {{/if}}
+            </div>
+            <div style="display: flex; justify-content: center ;margin-top: 15px;">
+                <h2 style="font-family: 'Nosifer', cursive;    color: #286090;">{{userName.Name}}</h2>
+            </div>
+        </div>
+        {{#if userDetails}}
+        <div class="col-sm-8 ">
+
+            <div style="margin-top: 20px; 
+                background: #f7f7f7;
+                box-shadow: 0px 0px 8px 2px #e4e4e4; 
+                border-radius: 5px; 
+                padding-top: 13px; 
+                padding-left: 14px;">
+                <div class="profile"> <span class="name1"> Name</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="name1" value="{{details.details_1.Name}} "></div>
+                <div class="profile"> <span class="email1"> Email</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="email1" value="{{details.details_1.Email}} "> </div>
+                <div class="profile"><span class="address1"> Address</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="address1" value="{{details.details_1.Address}} "></div>
+                <div class="profile"> <span class="phone1"> Phone</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="phone1" value="{{details.details_1.Phone}} "> </div>
+                <div class="profile"> <span class="city1"> City</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="city1" value="{{details.details_1.City}} "> </div>
+                <div class="profile"><span class="pincode1"> Pincode</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="pincode1" value="{{details.details_1.Pincode}} "></div>
+                <div class="profile"> <span class="state1"> State</span> <span style="color: black;">: </span><input
+                        class="input1" type="text" disabled id="state1" value="{{details.details_1.State}} "> </div>
+                <button id="myBtn" style="margin-bottom: 15px; background: #131921; color: #d2cece;"
+                    class="btn">edit</button> <!-- 000112 --->
+                <button id="delete" style="margin-bottom: 15px; background: #131921; color: #d2cece;"
+                    class="btn">delete</button>
+                <input id="userId90" style="display: none;" type="text" value="{{details._id}}">
+            </div>
+
+        </div>
+        {{else}}
+        <div class="col-sm-8">
+            <form id="profile-form" action="/add-details" method="POST">
+                <input style="margin-bottom: 20px; margin-top: 20px;" name="Name" class="form-control"
+                    placeholder="Name" type="text">
+                <input style="margin-bottom: 20px;" name="Email" class="form-control" placeholder="Email" type="email">
+                <input style="margin-bottom: 20px;" name="Address" class="form-control" placeholder="Address"
+                    type="text">
+                <input style="margin-bottom: 20px;" name="Phone" class="form-control" placeholder="Phone" type="number">
+                <input style="margin-bottom: 20px;" name="City" class="form-control" placeholder="City" type="text">
+                <div class="row">
+                    <div class="col-md-5"> <input style="margin-bottom: 20px;" name="Pincode" class="form-control"
+                            placeholder="Pincode" type="number"></div>
+                    <div class="col-md-7"> <input style="margin-bottom: 20px;" name="State" class="form-control"
+                            placeholder="State" type="text" id=""></div>
+                </div>
+                <button class="btn btn-success" type="submit">Add</button>
+            </form>
+            <button id="myBtn" style="margin-bottom: 15px; background: #131921; display: none; color: #d2cece;"
+                class="btn">edit</button> <!--  hidden button for 000112 --->
+        </div>
+        {{/if}}
+    </div>
+</div>
+
+
+
+{{!-- edit profile using modal --}}
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <form id="modalForm">
+            <input value="{{details.details_1.Name}}" style="margin-bottom: 20px; margin-top: 20px;" name="Name"
+                class="form-control" placeholder="Name" type="text">
+            <input value="{{details.details_1.Email}}" style="margin-bottom: 20px;" name="Email" class="form-control"
+                placeholder="Email" type="email">
+            <input value="{{details.details_1.Address}}" style="margin-bottom: 20px;" name="Address"
+                class="form-control" placeholder="Address" type="text">
+            <input value="{{details.details_1.Phone}}" style="margin-bottom: 20px;" name="Phone" class="form-control"
+                placeholder="Phone" type="number">
+            <input value="{{details.details_1.City}}" style="margin-bottom: 20px;" name="City" class="form-control"
+                placeholder="City" type="text">
+            <div class="row">
+                <div class="col-md-5"> <input value="{{details.details_1.Pincode}}" style="margin-bottom: 20px;"
+                        name="Pincode" class="form-control" placeholder="Pincode" type="number"></div>
+                <div class="col-md-7"> <input value="{{details.details_1.State}}" style="margin-bottom: 20px;"
+                        name="State" class="form-control" placeholder="State" type="text" id=""></div>
+            </div>
+            <input type="text" style="display: none;" name="userId" value="{{details.userId}}">
+            <button onclick="" class="btn btn-success" type="submit">Save change</button>
+        </form>
+    </div>
+</div>
+
+<div id="imageModal" style="width: 100%;
+ height: 100%; 
+ background-color: rgba(0, 0, 0, 0.411);
+ top: 0; left:0; z-index: 999;
+ position: fixed; 
+ justify-content: center;
+ align-items: center;
+ display: none;
+   ">
+    <div id="paddingLeft" style="background: white; 
+    width: 100%; 
+    
+    border-radius: 5px;
+    box-shadow: 0px 0px 2px 1px white;
+    margin-top:100px;">
+        <span style="margin-right:10px; margin-top: 5px;" class="close">&times;</span>
+        <div class="row">
+            <div class="col-sm-5">
+                <div style="display: flex; justify-content: center; align-items: flex-end;">
+                    {{#if Profile}}
+                    <img id="editProduct1"
+                        style="  margin-top: 20px;margin-bottom: 20px; border-radius: 100%; padding: 10px;"
+                        width="190px" height="190px" src="/user-profiles/{{userId}}.jpg" alt="">
+                    {{else}}
+                    <img id="editProduct1"
+                        style="  margin-top: 20px;margin-bottom: 20px; border-radius: 100%; padding: 10px;"
+                        width="190px" height="190px" src="/images/defaultProfile.png" alt="">
+                    {{/if}}
+
+                    <div id="img1" style="width: 190px; 
+                        height: 190px; 
+                        overflow: hidden; 
+                        margin-top: 20px;
+                        margin-bottm: 20px;               
+                        display: none;
+                        border-radius: 100%; " class="preview1"></div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <form id="image-form" enctype="multipart/form-data">
+                    <input type="text" style="display: none;" id="profile-id" name="userId" value="{{userId}}">
+                    <input style="margin:5px; margin-left: 22px; " name="Profile" type="file" id="image1"
+                        onchange="return filevalidation()">
+                    {{#if Profile}}
+                    <button type="button"
+                        style="margin-left:22px; margin-bottom: 22px; margin-top:10px; box-shadow: 0px 0px 3px 0px black; background: #efefef; color: rgba(0, 0, 0, 0.864);"
+                        class="btn  " onclick=" deleteProfileImage('{{userId}}')">Delete</button>
+                    {{/if}}
+
+                </form>
+                <button onclick="editFormData()" class="btn btn-success" style="display: none; margin:5px;"
+                    id="add">Save change</button>
+                <button class="btn btn-primary" style="display: none; margin: 5px;" id="crop-btn">Crop</button>
+                <div class="img-box" id="image-box"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var btn = document.getElementById("myBtn");
+    var modal = document.getElementById("myModal");
+    var span = document.getElementsByClassName("close")[0];
+    btn.onclick = function () {
+        modal.style.display = "block";
+    }
+    span.onclick = function () {
+        modal.style.display = "none";
+    }
+    window.onclick = function (event) {
+        if (event.target == modal) {             // it for form modal -->  
+            modal.style.display = "none";
+        } else if (event.target == imageModal) {  // it for image modal -->  
+            imageModal.style.display = 'none'
+        }
+    }
+    // edit userDetails ----- >>
+    function editUserDetails() {
+        $.ajax({
+            url: '/edit-profile',
+            method: 'post',
+            data: $('#modalForm').serialize(),
+            success: (response) => {
+                if (response) {
+                    $('#name1').attr('value', response.details_1.Name)
+                    $('#email1').attr('value', response.details_1.Email)
+                    $('#address1').attr('value', response.details_1.Address)
+                    $('#phone1').attr('value', response.details_1.Phone)
+                    $('#city1').attr('value', response.details_1.City)
+                    $('#pincode1').attr('value', response.details_1.Pincode)
+                    $('#state1').attr('value', response.details_1.State)
+                    document.getElementById("myModal").style.display = 'none'
+                }
+            }
+        })
+    }
+
+    $('#delete').click(() => {
+      var deletes =  confirm('Are you sure')
+      if(deletes){
+          var userId = $('#userId90').val()
+        $.ajax({
+            url: '/delete-user-profile-details',
+            data: { userId },
+            method: 'post',
+            success: (response) => {
+                if (response) {
+                    location.reload()
+                }
+            }
+        })
+
+      }
+        
+    })
+
+
+
+
+    // onclick action for image ------- >>
+    function popUpImageEdit() {
+        document.getElementById('imageModal').style.display = 'flex'
+    }
+    var imageModal = document.getElementById('imageModal')
+    var span = document.getElementsByClassName("close")[1];
+    span.onclick = () => {
+        imageModal.style.display = 'none'
+    }
+
+
+
+    // image crop ------->>>>>>>>
+
+    function filevalidation() {
+        var fileInput =
+            document.getElementById('image1');
+        var filePath = fileInput.value;
+
+        // Allowing file type
+        var allowedExtensions =
+            /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please choose an jpg image file');
+            fileInput.value = '';
+            return false;
+        }
+        else {
+            // image-box is the id of the div element that will store our cropping image preview
+            const imagebox = document.getElementById('image-box')
+            // crop-btn is the id of button that will trigger the event of change original file with cropped file.
+            const crop_btn = document.getElementById('crop-btn')
+            // id_image is the id of the input tag where we will upload the image
+            const input = document.getElementById('image1')
+
+            document.getElementById('img1').style.display = 'block'
+            document.getElementById('editProduct1').style.display = 'none'
+            var filePath = input.value;
+            // Getting image file object from the input variable
+            const img_data = input.files[0]
+            // createObjectURL() static method creates a DOMString containing a URL representing the object given in the parameter.
+            // The new object URL represents the specified File object or Blob object.
+            const url = URL.createObjectURL(img_data)
+
+            // Creating a image tag inside imagebox which will hold the cropping view image(uploaded file) to it using the url created before.
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%;">`
+
+            // Storing that cropping view image in a variable
+            const image = document.getElementById('image')
+
+            // Displaying the image box
+            document.getElementById('image-box').style.display = 'block'
+            // Displaying the Crop buttton
+            document.getElementById('crop-btn').style.display = 'block'
+            // Hiding the Post button
+            //   document.getElementById('add').style.display = 'none'
+
+            // Creating a croper object with the cropping view image
+            // The new Cropper() method will do all the magic and diplay the cropping view and adding cropping functionality on the website
+            // For more settings, check out their official documentation at https://github.com/fengyuanchen/cropperjs
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 1 / 1,
+                preview: '.preview1',
+                minCropBoxWidth: 150,
+                minCropBoxHeight: 150,
+            })
+
+            // When crop button is clicked this event will get triggered
+
+            crop_btn.addEventListener('click', () => {
+
+
+                // This method coverts the selected cropped image on the cropper canvas into a blob object
+                cropper.getCroppedCanvas().toBlob((blob) => {
+
+
+                    // Gets the original image data
+                    let fileInputElement = document.getElementById('image1');
+                    // Make a new cropped image file using that blob object, image_data.name will make the new file name same as original image
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    // Create a new container
+                    let container = new DataTransfer();
+                    // Add the cropped image file to the container
+                    container.items.add(file);
+                    // Replace the original image file with the new cropped image file
+                    fileInputElement.files = container.files;
+
+                    // Hide the cropper box
+                    document.getElementById('image-box').style.display = 'none'
+                    // Hide the crop button
+                    document.getElementById('crop-btn').style.display = 'none'
+                    // Display the Post button
+                    document.getElementById('add').style.display = 'block'
+
+                });
+            })
+
+
+        }
+    }
+
+    // upload image by ajax --->>>
+
+
+    function editFormData() {
+
+        var userId = $('#profile-id').val()
+        var data = new FormData();
+        $.each($('#image1')[0].files, function (i, file) {
+            data.append('Profile', file);
+            data.append('userId', userId)
+        });
+
+        $.ajax({
+            url: '/edit-image',
+            data: data,
+            method: 'POST',
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: (editImage) => {
+                if (editImage) {
+                    console.log('error')
+                    document.getElementById('imageModal').style.display = 'none'
+                    location.reload()
+                }
+
+            }
+        })
+
+
+    }
+
+
+    $(document).ready(() => {
+
+
+
+        $('#modalForm').validate({
+
+            rules: {
+                Name: {
+                    required: true,
+                    minlength: 4,
+                    lettersonly: true
+
+                },
+                Email: {
+                    required: true,
+                    email: true
+
+                },
+                Address: {
+                    required: true,
+                    minlength: 4
+
+                },
+                Phone: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10
+
+                },
+                city: {
+                    required: true,
+                    minlength: 3
+
+                },
+                Pincode: {
+                    required: true
+
+                },
+                State: {
+                    required: true
+
+                }
+            },
+            messages: {
+                Name: {
+                    required: 'Please enter your name'
+
+                },
+                Email: {
+                    required: 'Please enter your email'
+
+                },
+                Address: {
+                    required: 'Please enter your address'
+
+                },
+                Phone: {
+                    required: 'Please enter your mobile number'
+
+                },
+                City: {
+                    required: 'Please enter your city'
+
+                },
+                Pincode: {
+                    required: 'Please enter your pincode'
+
+                },
+                State: {
+                    required: 'Please choose your state'
+
+                }
+
+            },
+            submitHandler: function (form) {
+                editUserDetails()
+            }
+        })
+    })
+
+    function deleteProfileImage(userId) {
+        let data = confirm('Delete Profile Image')
+
+        if (data) {
+            location.reload()
+            $.ajax({
+                url: '/delete-profile-image',
+                data: { userId },
+                method: 'post',
+                success: (response) => {
+
+                }
+            })
+        }
+    }
+
+
+</script>

@@ -1,0 +1,26 @@
+<div class="container table-responsive" style="margin-top:94px;">
+    <div style="margin-right: 21px" class="btn btn-success "><a class="text-white" href="/admin/add-brand">Add Brand</a>
+    </div>
+    <table id="datatablesSimple" class="table">
+        <thead>
+            <tr>
+                <th scope="col">BRAND </th>               
+                <th>OPTIONS</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each response}}
+            <tr>
+                <td>{{this.Brand}}</td>
+                <td> <a href="/admin/edit-brand/{{this._id}}"> <i class="fas fa-edit"></i></a>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/admin/delete-brand/{{this._id}}" onclick="return confirm('delete your Brand')"> <i
+                            class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<script>
+</script>

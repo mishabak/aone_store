@@ -1,0 +1,59 @@
+    <script src="/js/bootstrap.js">  </script>
+
+    <style>
+        .iti{
+            width: 100%;
+            margin-bottom: 25px;
+        }
+    </style>
+
+<div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile form1">
+            <h3>Sign Up</h3>
+            <form id="user-signup" action="/sign-up" method="post">
+             {{#if checkName}}
+                <label for="">user name is already exists</label>
+                {{else}}
+                {{#if checkEmail}}
+                <label for="">email is already exists</label>
+                {{else}}
+                {{#if checkPhone}}
+                <label for="">phone number is already exists</label>
+                {{/if}}
+                {{/if}}
+                {{/if}}
+                <input style="margin-bottom: 25px; height: 50px;" placeholder="NAME" type="text" name="Name"
+                    class="form-control">
+                <input style="margin-bottom: 25px; height: 50px;" placeholder="EMAIL" type="Email" name="Email"
+                    class="form-control">
+                <input id="phone" style="margin-bottom: 25px; height: 50px;" placeholder="PHONE" type="number" 
+                    class="form-control">
+                    <input type="text" id="code" style="display: none;" value="" name="Phone">
+                     <input style="margin-bottom: 25px; height: 50px;" placeholder="PASSWORD" type="password" name="Password"
+                    class="form-control">
+                    <input style="display: none;" type="text" name="Profile">
+                    {{!-- <input type="text" name="Block" value="false" style="display: none;"> --}}
+                <input style="margin-bottom: 25px; " type="submit" id="submit" class="btn ">        
+            </form>
+        </div>
+    </div>
+</div>
+
+{{!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> --}}
+
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+    $('#submit').click(()=>{
+ document.getElementById('code').value =phoneInput.getNumber()
+    })
+  
+       
+</script>
+
+
+

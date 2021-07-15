@@ -1,0 +1,667 @@
+<script
+  src="https://www.paypal.com/sdk/js?client-id=Abrh3_vEz9uFoCsDVfTUeAYpTp1PZt-ODuq2Tr_iQVQRfGOg87F5Ew8Zx0MP5mhOyGJ0MM24TsFAkuND"></script>
+
+<body>
+  <style>
+    body {
+      font-family: Arial;
+      /*  font-size: 17px;
+      padding: 8px; */
+      background: #e8e6e6;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    .row {
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      margin: 0 -16px;
+    }
+
+    .col-25 {
+      -ms-flex: 25%;
+      flex: 25%;
+    }
+
+    .col-50 {
+      -ms-flex: 50%;
+      flex: 50%;
+    }
+
+    .col-75 {
+      -ms-flex: 75%;
+      flex: 75%;
+    }
+
+    .col-25,
+    .col-50,
+    .col-75 {
+      padding: 0 16px;
+    }
+
+    .container-color {
+      background-color: #f2f2f2;
+
+        {
+          {
+           !-- padding: 5px 20px 15px 20px;
+          --
+        }
+      }
+
+      border: 1px solid lightgrey;
+      border-radius: 3px;
+    }
+
+    input[type=text] {
+      width: 100%;
+      /*  margin-bottom: 20px; */
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+    }
+
+    label.labels {
+      margin-top: 24px;
+    }
+
+    label {
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    .icon-container {
+      margin-bottom: 20px;
+      padding: 7px 0;
+      font-size: 24px;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 17px;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    a {
+      color: #2196F3;
+    }
+
+    hr {
+      border: 1px solid lightgrey;
+    }
+
+    span.price {
+      float: right;
+      color: #131921;
+    }
+
+    span.payment {
+      margin-left: 15px;
+    }
+
+    /* Responsive layout */
+    @media (max-width: 800px) {
+      .row {
+        flex-direction: column-reverse;
+      }
+
+      .col-25 {
+        margin-bottom: 0px;
+      }
+    }
+
+    @media(max-width:1400px) {
+      .createpadding {
+        margin-top: 15px;
+        padding: 65px;
+        box-shadow: 0px 0px 14px 2px #d2d2d2;
+        border-radius: 6px;
+        color: #131921;
+      }
+    }
+
+    @media(max-width:400px) {
+      .createpadding {
+        padding: 65px;
+        box-shadow: 0px 0px 14px 2px #d2d2d2;
+        border-radius: 6px;
+        color: #131921;
+      }
+    }
+
+    @media(max-width:340px) {
+      .createpadding {
+        padding: 34px;
+
+      }
+    }
+
+    @media(max-width:800px) {
+      .row {
+        flex-direction: inherit;
+      }
+
+    }
+
+    @media(max-width:675px) {
+      .row {
+        flex-direction: column;
+      }
+
+    }
+
+      {
+        {
+         !-- .btn:hover {
+          color: white;
+        }
+
+        --
+      }
+    }
+
+    .outerModal {
+      padding-left: 40px;
+      padding-right: 40px;
+    }
+
+    .createpayment {
+      margin-top: 10px;
+      padding: 65px;
+      box-shadow: 0px 0px 14px 2px #d2d2d2;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      color: #131921;
+    }
+
+    .close {
+      color: #888484;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .innerModal {
+      height: 300px;
+
+    }
+
+    @media(max-width:555px) {
+      .innerModal {
+        height: 240px;
+
+      }
+    }
+
+    @media(max-width:430px) {
+      .innerModal {
+        height: 200px;
+
+      }
+
+      .outerModal {
+        padding-left: 28px;
+        padding-right: 28px;
+      }
+    }
+
+    body {
+      font-size: 13px !important;
+    }
+
+    @media(max-width:313px) {
+      .createpayment {
+        padding: 39px;
+      }
+    }
+  </style>
+
+  <div style="background: #f2f2f2; margin-right: 1px;" class="row ">
+    <div class="col-75">
+      <div class="container-color container">
+        <form id="checkout-forms">
+          {{#if detailsStatus}} {{! button for choose save address }}
+          <button onclick="showDetails()" type="button" style="background-color: #009688; color: white;"
+            class="btn ">Choose saved
+            address</button>
+          {{/if}}
+          <div class="row">
+            <div style="    display: flex;
+    flex-direction: column;" class="col-50">
+              <h3 style="margin-bottom: 10px;">Billing Address</h3>
+              <label for="name"><i class="fa fa-user"></i> Full Name</label>
+              <input type="text" id="name" class="form-control" name="Name">
+
+              <label class="labels" for="email"><i class="fa fa-envelope"></i> Email</label>
+              <input type="email" id="email" class="form-control" name="Email">
+
+              <label class="labels" for="address"><i class="fa fa-address-card-o"></i> Address</label>
+              <input type="text" id="address" class="form-control" name="Address">
+
+              <label class="labels" for="phone"><i class="fa fa-address-card-o"></i> Phone</label>
+              <input type="number" id="phone" class="form-control" name="Phone">
+
+              <label class="labels" for="city"><i class="fa fa-institution"></i> City</label>
+              <input type="text" id="city" class="form-control" name="city">
+              <div class="row">
+                <div class="col-25">
+                  <label class="labels" for="pincode">Pincode</label>
+                  <input type="number" id="pincode" class="form-control" name="Pincode">
+                </div>
+                <div class="col-50">
+                  <label class="labels" for="state">State</label>
+                  <input type="text" id="state" class="form-control" name="State">
+                </div>
+              </div>
+              <label>
+                <input type="checkbox" checked="checked" name="SaveAddress"> Save this information for next time
+              </label>
+            </div>
+            <div style="background: #f2f2f2; color: blanchedalmond; border-radius: 5px;" class="col-50   ">
+              <div class="createpadding ">
+                <h4 style="margin-bottom: 15px;margin-top: 20px;">Subtotal <span class="price">Rs: {{total}}</span>
+                </h4>
+                <h4>Shipping <span class="price">0.00</span> </h4>
+                <hr>
+                <h3 id="totalAmount">Total <span class="price">Rs: {{total}}</span> </h3>
+                <h3 id="totalAmount1" style="display: none;">Total <span class="price"><del>Rs: {{total}}</del></span>
+                </h3>
+                <input style="display: none;" id="total32" type="text" value="{{total}}">
+                <h3 id="offerAmount1" style="display: none; margin-top: 10px;">Offer Price <span id="" class="price">Rs:
+                    <span id="span1232"></span></span></h3>
+
+
+              </div>
+              <div style="display: flex; flex-direction: column;" class="createpayment bg-light ">
+                <h2 style="margin-bottom: 10px;">Payment method</h2>
+                <label id="Payment-method-error" class="error" style="display: none; color: red;"
+                  for="Payment-method">Please choose payment method</label>
+                <label for="" class="radio-inline ">
+                  <input type="radio" name="Payment-method" value="COD" id="">COD
+                </label><br>
+
+                <label for="" class="radio-inline ">
+                  <input type="radio" name="Payment-method" value="Razorpay" id="">Razorpay
+                </label><br>
+
+                <label for="" class="radio-inline ">
+                  <input type="radio" name="Payment-method" value="Paypal" id="">Paypal
+                </label>
+                {{!-- paypal button --}}
+                <div id="paypal-button-container"></div>
+
+                <input name="userId" id="" value="{{userData}}" hidden>
+                <input name="Background" id="" value="#999999" hidden>
+                <div id="couponInputdiv" style="display: flex; flex-direction: row; margin-top: 10px;">
+                  {{#if coupon}}
+                  <input id="entered-coupon-code" name="Coupon_code" style="border: none;" type="text"
+                    class="form-control" placeholder="Enter coupon code">
+                  <button onclick="checkCouponValidity()" type="button"
+                    style="border: none; background: rgb(63 182 186 / 73%); color: white; padding:2px;">Use</button>
+                  {{/if}}
+                </div>
+                <label id="error1213" style="display: none;" for="">invalid code</label>
+
+
+                <input
+                  style=" height: 36px; font-family: 'Montserrat'; box-shadow: 0px 0px 2px 1px #ff8630; background:#ff8630; border: none;"
+                  type="submit" value="Continue to checkout" class="btn btn-success text-white">
+              </div>
+
+            </div>
+          </div>
+          {{!-- <label>
+            <input type="checkbox" checked="checked" name="SaveAddress"> Save this information for next time
+          </label> --}}
+
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+{{!-- modal for view saved details --}}
+
+<div id="modalAddress" style="width: 100%; 
+      height: 100%; 
+      background: rgba(0, 0, 0, 0.494);  
+      top: 0; 
+      position: fixed; 
+      display: none;  
+      " class="outerModal">
+  <div style="
+    overflow-y: auto;
+    background: rgba(255, 255, 255, 0.213); 
+    width: 100%; 
+    padding-left: 10px;
+    padding-right: 10px;
+    box-shadow: 0px 0px 3px 2px white;
+    border-radius: 5px; 
+    margin-top: 226px;
+    margin-bottom: 112px;
+    " class="innerModal">
+    <div class="row">
+      {{#if userDetails}}
+      {{#each userDetails}}
+      <div class="col-md-6 " style="
+      padding: 8px; 
+      background: rgb(175 175 175 / 14%);
+      box-shadow: 0px 0px 5px 2px #5f5959;
+      border-radius: 4px;
+       ">
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.Name}}">{{details_1.Name}}
+        </li>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.Email}}">
+          {{details_1.Email}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.Address}}">
+          {{details_1.Address}}</li>
+        <button onclick="closeDetails1(
+          '{{details_1.Name}}',
+          '{{details_1.Email}}',
+          '{{details_1.Address}}',
+          '{{details_1.Phone}}',
+          '{{details_1.City}}',
+          '{{details_1.Pincode}}',
+          '{{details_1.State}}'
+          )" style="float: right; font-size: 18px; align-items: center; background: #ffffff00;
+    color: black;width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    padding-top: 0px;
+    font-size: 21px;
+     " class=" fab fa-optin-monster"></button>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.Phone}}">
+          {{details_1.Phone}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.City}}">{{details_1.City}}
+        </li>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.Pincode}}">
+          {{details_1.Pincode}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;" value="{{details_1.State}}">
+          {{details_1.State}}</li>
+      </div>
+      {{/each}}
+      {{/if}}
+
+      {{#if paymentDetails}}
+      {{#each paymentDetails}}
+      <div id="{{this._id}}" class="col-md-6 " style="
+      padding: 8px; 
+      background: rgb(175 175 175 / 14%);
+      box-shadow: 0px 0px 5px 2px #5f5959;
+      border-radius: 4px;
+      color: red;
+       ">
+        <button onclick="deleteData('{{this._id}}')" style="float: right; font-size: 18px; align-items: center; background: #ffffff00; color: black;width:
+          35px; height: 35px; display: flex; justify-content: center; align-items: center; border-radius: 100%;
+          padding-top: 0px; font-size: 21px; " class="fas fa-trash"></button>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.Name}} </li>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.Email}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.Address}}</li>
+
+        <button onclick="closeDetails2(
+          '{{user_details.Name}}',
+          '{{user_details.Email}}',
+          '{{user_details.Address}}',
+          '{{user_details.Phone}}',
+          '{{user_details.City}}',
+          '{{user_details.Pincode}}',
+          '{{user_details.State}}'
+          )" style="float: right; font-size: 18px; align-items: center; background: #ffffff00;
+    color: black;width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
+    padding-top: 0px;
+    font-size: 21px;
+     " class=" fab fa-optin-monster"></button>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.Phone}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.City}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.Pincode}}</li>
+        <li style="color: white; font-size: 17px; list-style-type: none;">
+          {{user_details.State}}</li>
+      </div>
+      {{/each}}
+      {{/if}}
+    </div>
+  </div>
+</div>
+
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+{{!--
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+--}}
+
+
+{{!--
+<script src="/js/bootstrap.js">  </script> --}}
+<script>
+
+  function validationSuccess() {
+    $('#checkout-forms').submit((e) => {
+      e.preventDefault()
+      $.ajax({
+        url: '/checkout',
+        method: 'post',
+        data: $('#checkout-forms').serialize(),
+
+        success: (response) => {
+          if (response.cod_success) {
+            location.href = '/order-success'
+          } else if (response.method == 'Paypal') {
+            paypal.Buttons({
+              // Set up the transaction
+              createOrder: function (data, actions) {
+                return actions.order.create({
+                  purchase_units: [{
+                    amount: {
+                      value: response.total
+                    }
+                  }]
+                });
+              },
+
+              // Finalize the transaction
+              onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                  // Show a success message to the buyer
+                  alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                });
+              }
+            }).render('#paypal-button-container');
+
+
+
+          } else if (response.method == 'Razorpay') {
+            RazorpayPayment(response.order)
+          }
+        }
+      })
+    })
+
+  }
+
+  //payment razorPay------------------>>>
+
+  function RazorpayPayment(order) {
+    var options = {
+      "key": "rzp_test_IYfuNTa04hHPJG", // Enter the Key ID generated from the Dashboard
+      "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+      "currency": "INR",
+      "name": "Online store",
+      "description": "Test Transaction",
+      "image": "https://example.com/your_logo",
+      "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+      "handler": function (response) {
+        // alert(response.razorpay_payment_id);
+        // alert(response.razorpay_order_id);
+        // alert(response.razorpay_signature)
+
+
+
+        verifyPayment(response, order)
+      },
+      "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+      },
+      "notes": {
+        "address": "Razorpay Corporate Office"
+      },
+      "theme": {
+        "color": "#3399cc"
+      },
+    }
+    var rzp1 = new Razorpay(options);
+    rzp1.open();
+  }
+  function verifyPayment(payment, order) {
+    $.ajax({
+      url: '/verify-payment',
+      method: 'post',
+      data: {
+        payment,
+        order
+      },
+      success: (response) => {
+        if (response.status) {
+          location.href = '/order-success'
+        } else {
+          alert('Payment failed')
+        }
+      }
+    })
+  }
+
+
+  function showDetails() {
+    document.getElementById('modalAddress').style.display = 'block'
+  }
+  function closeDetails1(Name, Email, Address, Phone, City, Pincode, State) {
+    document.getElementById('name').value = Name
+    document.getElementById('email').value = Email
+    document.getElementById('address').value = Address
+    document.getElementById('phone').value = Phone
+    document.getElementById('city').value = City
+    document.getElementById('pincode').value = Pincode
+    document.getElementById('state').value = State
+    document.getElementById('modalAddress').style.display = 'none'
+  }
+  function closeDetails2(Name, Email, Address, Phone, City, Pincode, State) {
+    document.getElementById('name').value = Name
+    document.getElementById('email').value = Email
+    document.getElementById('address').value = Address
+    document.getElementById('phone').value = Phone
+    document.getElementById('city').value = City
+    document.getElementById('pincode').value = Pincode
+    document.getElementById('state').value = State
+    document.getElementById('modalAddress').style.display = 'none'
+
+  }
+
+
+  function deleteData(userPaymentId) {
+    var deleted = confirm('Delete')
+    if (deleted) {
+      $.ajax({
+        method: 'post',
+        data: {
+          Id: userPaymentId
+        },
+        url: '/deletePaymentDetails',
+        success: (response) => {
+          if (response) {
+            document.getElementById(userPaymentId).style.display = 'none'
+          }
+        }
+      })
+    }
+  }
+
+  window.onclick = function (event) {
+    var modal = document.getElementById('modalAddress')
+    if (event.target == modal) {             // it for form modal -->  
+      modal.style.display = 'none'
+    }
+  }
+
+
+  // coupon verification
+
+  function checkCouponValidity() {
+    var enteredCode = document.getElementById('entered-coupon-code').value
+    $.ajax({
+      url: '/validate-coupone-code',
+      data: {
+        enteredCode,
+      },
+      method: 'post',
+      success: (response) => {
+
+        if (response) {
+          document.getElementById('couponInputdiv').style.display = 'none'
+          document.getElementById('error1213').style.display = 'none'
+
+          $.ajax({
+            url: '/verify-coupon-code',
+            method: 'get',
+            success: (response) => {
+              var total = document.getElementById('total32').value
+              var discountAmount = total - (total * response.data.Coupon_percentage) / 100
+
+              document.getElementById('span1232').innerHTML = parseInt(discountAmount)
+              document.getElementById('totalAmount').style.display = 'none'
+              document.getElementById('totalAmount1').style.display = 'block'
+              document.getElementById('offerAmount1').style.display = 'block'
+            }
+          })
+        } else {
+          document.getElementById('error1213').style.display = 'block'
+        }
+      }
+    })
+
+
+  }
+
+
+</script>

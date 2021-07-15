@@ -1,0 +1,115 @@
+<style>
+    .iti {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+</style>
+
+
+<div class="login">
+    <div class="main-agileits">
+        <div class="form-w3agile form1">
+            <h3>Login</h3>
+            <form id="user-login"  action="/login" method="post">
+                <input id="phone" value="7559885239" style="margin-bottom: 25px; height: 50px;" placeholder="PHONE" type="number"
+                     class="form-control">
+                <input id="Password" style=" display: none;  margin-bottom: 25px; height: 50px;" placeholder="PASSWORD"
+                    value="12345678" type="password" name="Password" class="form-control">
+                <input id="Otp" style=" display: none;  margin-bottom: 25px; height: 50px;" placeholder="Otp"
+                    type="text" name="Otp" class="form-control">
+                <input type="text" id="code" value="" style="display: none;" name="Phone">
+                {{#if loginError}}
+                <p id="loginError" class="text-danger">Invalid Phone number or password</p>
+                {{/if}}
+                {{#if otpError}}
+                <p id="otpError" class="text-danger">Invalid Otp</p>
+
+                {{/if}}
+                {{#if blocked}}
+                <p style="color: red;">Your account is blocked</p>
+                {{/if}}
+                <div class="row">
+                    <p class="col-xs-6 text-info" id="loginPassword">Login with Password</p>
+                    <p class="col-xs-6 text-info" id="loginOtp">Login with Otp</p>
+                </div>
+
+                <input id="submitPassword" style=" display: none;  margin-bottom: 25px; " type="submit" class="btn ">
+                <input id="submitOtp" style=" display: none;  margin-bottom: 25px; " type="submit" class="btn ">
+
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+
+
+    //   $(document).ready(() => {
+    //       $('#loginPassword').click(() => {
+    //           $('#Password').show()
+    //           $('#submitPassword').show()
+    //           $('#loginOtp').hide()
+    //           $('#loginPassword').hide()
+    //       })
+    //       $('#loginOtp').click(() => {
+    //           $('#submitOtp').show()
+    //           $('#loginPassword').hide()
+    //           $('#loginOtp').hide()
+    //           $('#loginError').hide()
+    //       })
+    //       $('#submitOtp').click(() => {
+    //           $('#user-login').attr('action', '/login-otp');
+    //       })
+    //   })
+
+
+
+    $(document).ready(() => {
+        $('#loginPassword').click(() => {
+            $('#Password').show()
+            $('#submitPassword').show()
+            $('#loginOtp').show()
+            $('#loginPassword').hide()
+            $('#submitOtp').hide()
+
+        })
+
+        $('#loginOtp').click(() => {
+            $('#submitOtp').show()
+            $('#submitPassword').hide()
+            $('#loginPassword').show()
+            $('#loginOtp').hide()
+            $('#loginError').hide()
+            $('#Password').hide()
+
+        })
+        $('#submitOtp').click(() => {
+            $('#user-login').attr('action', '/login-otp');
+        })
+
+
+    })
+</script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+
+
+
+{{!-- for international code --}}
+<script>
+    const phoneInputField = document.querySelector("#phone");
+    const phoneInput = window.intlTelInput(phoneInputField, {
+        utilsScript:
+            "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+    $('#submitPassword').click(()=>{
+ document.getElementById('code').value =phoneInput.getNumber()
+    })
+
+     $('#submitOtp').click(()=>{
+ document.getElementById('code').value =phoneInput.getNumber()
+    })
+  
+  
+       
+</script>

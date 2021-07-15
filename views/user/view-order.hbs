@@ -1,0 +1,63 @@
+<div class="container table-responsive" style="margin-top: 94px; ">
+  <table style="border: none;box-shadow: 0px 0px 14px 2px #d2d2d2;" id="datatablesSimple" class="table">
+    <thead>
+      <tr>
+        <th scope="col">Date</th>
+        <th scope="col">Address</th>
+        {{!-- <th scope="col">Pincode</th> --}}
+        {{!-- <th scope="col">Mobile</th> --}}
+        <th scope="col">Price</th>
+        <th scope="col">Payment method</th>
+         <th scope="col">Status</th>
+        <th scope="col">OPTIONS</th>
+      </tr>
+    </thead>
+    <tbody >
+      {{#each orders}}
+      <tr>
+        <td>{{formatDate this.Date 'DD-MM-YYYY'}}</td>
+        <td>{{this.deliveryDetails.Address}}</td>
+        {{!-- <td>{{this.deliveryDetails.Pincode}}</td> --}}
+        {{!-- <td>{{this.deliveryDetails.Mobile}}</td> --}}
+        <td>{{this.TotalAmount}}</td>
+         <td>{{this.PaymentMethod}}</td>
+         <td id="{{this._id}}" style="color: {{this.Background}}" >{{this.Status}}</td>
+         <td>
+             <a href="/view-order-products/{{this._id}}" class="btn btn-primary">View Products</a> &nbsp;&nbsp;
+             {{#if cancel}}
+            <button id="{{this._id}}cancel" onclick="cancelOrder('{{this._id}}')" style="border: none; color: white; background: #1b242f; border-radius: 3px; font-size: 11px; padding: 4px;" >cancel</button>
+        
+           {{!-- <a href="">  <i style="font-size: 18px; color: #d24747;"  class="fas fa-window-close"></i></a> --}}
+         {{/if}}
+         </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
+<script>
+  function cancelOrder(orderId){
+    $.ajax({
+      url:'/cancel-order',
+      method:'post',
+      data:{
+        orderId,
+        backgroundColor:'#d24747'
+      },
+      success:(response)=>{
+        alert("order cancelled")
+       document.getElementById(orderId).innerHTML ="cancelled"
+       document.getElementById(orderId).style.color ='#d24747'
+       document.getElementById(orderId+'cancel').style.display = 'none'
+
+      }
+    })
+  }
+</script>
+
+<script>
+  
+</script>
+
+
+  <script src="/js/bootstrap.js">  </script>
